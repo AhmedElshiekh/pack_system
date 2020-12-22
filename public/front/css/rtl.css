@@ -1,0 +1,88 @@
+body{
+    direction: rtl !important;
+}
+.fl{
+    float: left;
+}
+.f-0{
+   right: auto!important;
+    left: 25px !important;
+}
+.col-md-3 {
+    float: right;
+
+}
+.l-500{
+    left: 550px;
+}
+.l-237{
+    left: 237px;
+}
+.navbar-nav{float:right;margin:0}.navbar-nav>li{float:right}
+.navbar-header{
+    float: right;
+}
+
+table.table-bordered tbody th, table.table-bordered tbody td {
+   border-left-width:1px !important;
+
+}
+div.dataTables_filter {
+    text-align: left;
+}
+.table>thead>tr>th {
+    text-align: right;
+}
+div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: left;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    text-align: right;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 20px;
+}
+.panel-footer{
+    text-align: left;
+}
+.head-rtl{
+    text-align: left;
+}
+address{
+    text-align: left;
+}
+/*  صفحه الطباعه في الفاتوره*/
+.invoice-wrapper .invoice-container .invoice-inner .row .img{
+    text-align: end !important;
+}
+address{
+    text-align: right;
+}
+.col-xs-6 .ltr{
+    direction: ltr;
+    text-align: right;
+}
+strong{
+    direction: ltr;
+    text-align: right;
+}
+.fl-l{
+    float: right;
+}
+@media (min-width: 768px) {
+    .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+        float: right;
+    }
+}
+@media (min-width: 760px){
+    .table-toolbar-left {
+        float: right;
+        text-align: right;
+    }
+}
