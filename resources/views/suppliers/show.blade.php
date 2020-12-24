@@ -6,6 +6,9 @@
                 {{__("Supplier information")}}
             </h2>
         </div>
+        <div class="">
+            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
+        </div>
     @endsection
 
     <div class="py-10 px-4">
@@ -16,13 +19,13 @@
                 </div>
                 <div class="bg-white overflow-hidden border-double border-4 border-light-blue-500">
                     <div class="panel-body">
-                        <table  id="table1" class="table ">
+                        <table  id="table1" class="table text-center">
                             <thead>
                             <tr>
                                 <th >{{ __('Name') }}</th>
                                 <th >{{ __('Phone') }}</th>
                                 <th >{{ __('Address') }}</th>
-                                <th >{{ __('الاجمالي') }}</th>
+                                <th >{{ __('Total') }}</th>
                                 <th >{{ __('Paid') }}</th>
                                 <th >{{ __('Remaining') }}</th>
                                 <th scope="col">{{ __('Actions') }}</th>
@@ -37,7 +40,7 @@
                                     <td>{{ $supplier->paid }}</td>
                                     <td>{{ $supplier->remaining }}</td>
                                     <td>
-                                        {{-- <a href="{{ route('supplier.edit', $supplier) }}"  class="btn btn-primary fa fa-edit"></a> --}}
+                                        <a href="{{ route('supplier.edit', $supplier) }}"  class="btn btn-sm btn-success fa fa-edit"></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -55,7 +58,7 @@
                 </div>
                 <div class="bg-white border-double border-4 border-light-blue-500">
                     <div class="panel-body">
-                        <table  id="table" class="table ">
+                        <table  id="table" class="table text-center">
                             <thead>
                             <tr>
                                 <th >{{ __('Number') }}</th>
