@@ -16,14 +16,22 @@
 
         <link rel="stylesheet" href="{{ asset('front/css/bootstrap.css') }}">
         <link href="{{ asset('front/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('front/plugins/datatables/media/css/dataTables.bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('front/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet">
-        {{-- <link rel="stylesheet" href="{{ asset('front/css/sweetalert.min.css')}}"> --}}
-        <link href="{{ asset('front/plugins/fooTable/css/footable.core.css') }}" rel="stylesheet">
-        {{-- <link href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css" rel="stylesheet"> --}}
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-        <link href=" https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/jszip-2.5.0/dt-1.10.23/af-2.3.5/b-1.6.5/b-colvis-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/cr-1.5.3/fc-3.3.2/fh-3.1.7/kt-2.5.3/r-2.2.6/rg-1.1.2/rr-1.2.7/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css"/>
+
+        {{-- <link href="{{ asset('front/plugins/datatables/media/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('front/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet">
+        <link href="{{ asset('front/plugins/fooTable/css/footable.core.css') }}" rel="stylesheet"> --}}
+
+        {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju-1.12.1/jq-3.3.1/jszip-2.5.0/dt-1.10.23/af-2.3.5/b-1.6.5/b-colvis-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/cr-1.5.3/fc-3.3.2/fh-3.1.7/kt-2.5.3/r-2.2.6/rg-1.1.2/rr-1.2.7/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css"/> --}}
+        {{-- <link href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css" rel="stylesheet"> --}}
+        {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css" rel="stylesheet"> --}}
+
+
+        {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/datatables.min.css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/4.0.0/material-components-web.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/1.10.22/css/dataTables.material.min.css" rel="stylesheet"> --}}
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
@@ -44,7 +52,7 @@
             <main class="md:auto">
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                        <div class="bg-white overflow-hidden shadow-2xl sm:rounded-lg">
                             {{ $slot }}
                         </div>
                     </div>
@@ -72,23 +80,40 @@
         <script src="{{ asset('front/js/scripts.js') }}"></script>
         <script src="{{ asset('front/plugins/moment/moment.min.js') }}"></script>
         <script src="{{ asset('front/plugins/moment-range/moment-range.js') }}"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/jszip-2.5.0/dt-1.10.23/af-2.3.5/b-1.6.5/b-colvis-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/cr-1.5.3/fc-3.3.2/fh-3.1.7/kt-2.5.3/r-2.2.6/rg-1.1.2/rr-1.2.7/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.js"></script>
+
+        {{-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dtaTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script> --}}
+
+        {{--
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.material.min.js"></script>
+
         <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script> --}}
+        {{-- <script src="{{ asset('front/plugins/fooTable/dist/footable.all.min.js') }}"></script> --}}
+
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="{{ asset('front/plugins/screenfull/screenfull.js') }}"></script>
-        <script src="{{ asset('front/plugins/fooTable/dist/footable.all.min.js') }}"></script>
         <script src="{{ asset('front/plugins/jquery-print/jQuery.print.js') }}"></script>
         <script src="{{ asset('front/plugins/datatables/media/js/jquery.dataTables.js') }}"></script>
         <script src="{{ asset('front/plugins/datatables/media/js/dataTables.bootstrap.js') }}"></script>
-        <script src="{{ asset('front/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
-        {{-- @include('sweetalert::alert') --}}
+        <script src="{{ asset('front/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>--}}
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+        {{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+<script src="https://cdn.jsdelivr.net/es6-promise/latest/es6-promise.auto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+        <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script> --}}
         @yield('scripts')
         <script>
             function received(url,el) {

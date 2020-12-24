@@ -4,7 +4,7 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">{{__('Branches')}}</h3>
+        <h3 class="panel-title">{{__('Voucher Categories')}}</h3>
     </div>
     <!--Data Table-->
     <!--===================================================-->
@@ -13,7 +13,8 @@
             <div class="row">
                 <div class="col-sm-6 table-toolbar-left">
                     <div class="btn-group">
-                        <a href="#"  data-toggle="modal" data-target="#createBranchModal" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                        <a href="#"  data-toggle="modal" data-target="#createCategoryModal" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+
                     </div>
                 </div>
 
@@ -23,28 +24,26 @@
                 <thead>
                 <tr>
                     <th data-toggle="true">#</th>
-                    <th >{{ __('Name') }}</th>
+                    <th >{{ __('اقسام المنصرف') }}</th>
 
                     <th >{{ __('Created') }}</th>
 
-                @canany(['update branch','read branch'])
+                @canany(['create voucher','read voucher'])
                         <th scope="col">{{ __('Actions') }}</th>
                 @endcanany
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($branches as $branch)
+                    @foreach($categories as $category)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $branch->name }}</td>
-                            <td>{{ $branch->created_at->format('d/M/Y') }}</td>
-                            @canany(['update branch','read branch'])
+                            <td>{{ $category->name }}</td>
+                            <td>{{ $category->created_at->format('d/M/Y') }}</td>
+                            @canany(['create voucher','read voucher'])
                                 <td>
-                                    @can('read branch')
-                                        <a href="{{route('branch.show',$branch)}}" class="btn btn-success fa fa-eye"></a>
-                                    @endcan
-                                    @can('update branch')
-                                        <a href="#" onclick="editBranch( '{{$branch->name}}', '{{ route('branch.update',$branch) }}',event);"
+
+                                    @can('create voucher')
+                                        <a href="#" onclick="editBranch( '{{$category->name}}', '{{ route('voucher.category.update',$category) }}',event);"
                                            data-toggle="modal" data-target="#editBranchModal"   class="btn btn-primary fa fa-edit"></a>
                                     @endcan
 
@@ -59,7 +58,7 @@
     <!--===================================================-->
     <!--End Data Table-->
 </div>
-<div class="modal fade" id="createBranchModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel"
+<div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -67,10 +66,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title" id="categoryModalLabel">{{ __('اضافه فرع') }}</h5>
+                <h5 class="modal-title" id="categoryModalLabel">{{ __('Create Voucher Category') }}</h5>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" method="POST" action="{{ route('branch.store') }}"
+                <form enctype="multipart/form-data" method="POST" action="{{ route('voucher.category.store') }}"
                       accept-charset="utf-8">
                     @csrf
                         <div class="form-group">
@@ -112,6 +111,7 @@
 @stop
 
 @section('scripts')
+
     <script>
         function removeUser(name, url, e) {
             e.preventDefault();
@@ -131,16 +131,25 @@
                 }
             );
         }
-        // $('#table').dataTable( {
-        //     "responsive": false,
-        //     "language": {
-        //         "paginate": {
-        //             "previous": '<i class="fa fa-angle-left"></i>',
-        //             "next": '<i class="fa fa-angle-right"></i>'
-        //         }
-        //     }
-        // } );
-        $('#demo-foo-row-toggler').footable();
+
+
+
+        $('#demo-foo-row-toggler').dataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'excel', 'pdf', 'print'
+            ],
+            "language": {
+                "paginate": {
+                    "previous": '<i class="fa fa-angle-left"></i>',
+                    "next": '<i class="fa fa-angle-right"></i>'
+                }
+            },
+
+
+
+        } );
+        // $('#demo-foo-row-toggler').footable();
         function editBranch(name,href,event) {
             let modal = $('#editBranchModal');
             modal.find('.modal-body input[name="name"]').val(name);

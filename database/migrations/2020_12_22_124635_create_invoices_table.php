@@ -19,15 +19,19 @@ class CreateInvoicesTable extends Migration
             $table->string('type');
             $table->string('note')->nullable();
             $table->integer('total');
+            $table->integer('discount');
             $table->integer('paid');
             $table->integer('remaining');
+            $table->date('due_date')->nullable();
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->bigInteger('customer_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->bigInteger('item_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('item_id')->references('id')->on('items');
         });
     }
 

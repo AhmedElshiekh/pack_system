@@ -8,13 +8,13 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{ route('supplier.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{__('Create supplier')}}</a>
+            <a href="{{ route('supplier.create') }}" class="btn btn-outline-primary rounded-0"><i class="fa fa-plus"></i> {{__('Create supplier')}}</a>
         </div>
     @endsection
 
-    
+
     <div class="panel-body">
-        <table  id="table" class="table text-center">
+        <table  id="table" class="table text-center table-striped table-bordered " style="width:100%">
             <thead class="text-center">
                 <tr>
                     <th >#</th>
@@ -23,6 +23,7 @@
                     <th >{{ __('Address') }}</th>
                     <th >{{ __('Paid') }}</th>
                     <th >{{ __('Remaining') }}</th>
+                    <th >{{ __('note') }}</th>
                     <th scope="col">{{ __('Actions') }}</th>
                 </tr>
             </thead>
@@ -35,15 +36,16 @@
                         <td>{{ $supplier->address }}</td>
                         <td>{{ $supplier->paid }}</td>
                         <td>{{ $supplier->remaining }}</td>
+                        <td>{{ $supplier->note }}</td>
                         <td>
-                            <a href="{{ route('supplier.edit', $supplier) }}"  class="btn btn-primary fa fa-edit"></a>
-                            <a href="{{ route('supplier.show', $supplier) }}"  class="btn btn-success fa fa-eye"></a>
+                            <a href="{{ route('supplier.edit', $supplier) }}"  class="btn btn-sm btn-primary fa fa-edit"></a>
+                            <a href="{{ route('supplier.show', $supplier) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $suppliers->links() }}
+        <br>
     </div>
 
 
@@ -69,9 +71,10 @@
             }
 
             $('#table').dataTable( {
+                "scrollX": true,
                 "responsive": false,
-                info:false,
-                paging:false,
+                // info:false,
+                // paging:false,
                 dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'

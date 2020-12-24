@@ -1,4 +1,4 @@
-@extends('layouts.master')
+
 
 @section('content')
 
@@ -58,8 +58,8 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($invoice->items as $item)
-{{--                                            @dd($item)--}}
+                                        {{-- @foreach($invoice->items as $item)
+                                           @dd($item)
                                             <tr>
                                                 <td>{{$item->name}}</td>
                                                 <td class="text-center">{{$item->size->name}}</td>
@@ -68,7 +68,7 @@
                                                 <td class="text-center">{{$item->pivot->quantity}}</td>
                                                 <td class="text-center">{{$item->pivot->total}}</td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                         <tr>
                                             <td class="no-line"></td>
                                             <td class="no-line"></td>
@@ -98,7 +98,7 @@
     </div>
 
 
-@stop
+
 
 @section('scripts')
 

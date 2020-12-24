@@ -3,109 +3,93 @@
     @section('header')
         <div class="">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Suppliers') }}
+                {{__("Supplier information")}}
             </h2>
         </div>
     @endsection
 
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ $supplier->name}}</h3>
+    <div class="py-10 px-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="panel">
+                <div class="panel-heading text-center">
+                    <h4>{{__("Main info")}}</h4>
+                </div>
+                <div class="bg-white overflow-hidden border-double border-4 border-light-blue-500">
+                    <div class="panel-body">
+                        <table  id="table1" class="table ">
+                            <thead>
+                            <tr>
+                                <th >{{ __('Name') }}</th>
+                                <th >{{ __('Phone') }}</th>
+                                <th >{{ __('Address') }}</th>
+                                <th >{{ __('الاجمالي') }}</th>
+                                <th >{{ __('Paid') }}</th>
+                                <th >{{ __('Remaining') }}</th>
+                                <th scope="col">{{ __('Actions') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $supplier->name }}</td>
+                                    <td>{{ $supplier->phone }}</td>
+                                    <td>{{ $supplier->address }}</td>
+                                    <td>{{ $supplier->paid + $supplier->remaining }}</td>
+                                    <td>{{ $supplier->paid }}</td>
+                                    <td>{{ $supplier->remaining }}</td>
+                                    <td>
+                                        {{-- <a href="{{ route('supplier.edit', $supplier) }}"  class="btn btn-primary fa fa-edit"></a> --}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--Data Table-->
-        <!--===================================================-->
-        <div class="panel-body">
-
-            <table  id="table1" class="table ">
-                <thead>
-                <tr>
-                    <th >{{ __('Name') }}</th>
-                    <th >{{ __('Phone') }}</th>
-                    <th >{{ __('Address') }}</th>
-                    <th >{{ __('الاجمالي') }}</th>
-                    <th >{{ __('Paid') }}</th>
-                    <th >{{ __('Remaining') }}</th>
-                    <th scope="col">{{ __('Actions') }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ $supplier->name }}</td>
-                        <td>{{ $supplier->phone }}</td>
-                        <td>{{ $supplier->address }}</td>
-                        <td>{{ $supplier->paid + $supplier->remaining }}</td>
-                        <td>{{ $supplier->paid }}</td>
-                        <td>{{ $supplier->remaining }}</td>
-                        <td>
-                            {{-- <a href="{{ route('supplier.edit', $supplier) }}"  class="btn btn-primary fa fa-edit"></a> --}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <!--===================================================-->
-        <!--End Data Table-->
-    {{-- </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{__('الفواتير')}}</h3>
-        </div>
-        <!--Data Table-->
-        <!--===================================================-->
-        <div class="panel-body">
-
-            <table  id="table" class="table ">
-                <thead>
-                <tr>
-                    <th >{{ __('Number') }}</th>
-                    <th >{{ __('Payment') }}</th>
-                    <th >{{ __('Total') }}</th>
-                    <th >{{ __('Discount') }}</th>
-                    <th >{{ __('Paid') }}</th>
-                    <th >{{ __('Remaining') }}</th>
-                    <th >{{ __('User') }}</th>
-                    <th >{{ __('Note') }}</th>
-                    @canany(['update invoice', 'delete invoice'])
-                        <th scope="col">{{ __('Actions') }}</th>
-                    @endcanany
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($supplier->invoices as $invoice)
-                    <tr @if($invoice->return)style="text-decoration: line-through"@endif>
-                        <td>{{ $invoice->number }}</td>
-                        <td>{{ $invoice->payment }}</td>
-                        <td>{{ $invoice->total }}</td>
-                        <td>{{ $invoice->discount }}</td>
-                        <td>{{ $invoice->paid }}</td>
-                        <td>{{ $invoice->remaining}}</td>
-                        <td>{{ $invoice->user->name }}</td>
-                        <td>{{ $invoice->note }}</td>
-
-                        @canany(['update invoice', 'read invoice'])
-                            <td>
-                                @can('read invoice')
-                                    <a href="{{ route('invoice.show', $invoice) }}"  class="btn btn-success fa fa-eye"></a>
-
-                                @endcan
-                                @if($invoice->return ==0 )
-                                    @can('update invoice')
-                                        <a href="" onclick="removeUser('{{ $invoice->number }}', '{{ route('invoice.return', $invoice) }}', event)"  class="btn btn-danger">{{__('return')}}</a>
-                                    @endcan
-                                @endif
-                            </td>
-                        @endcanany
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-
-        </div>
-        <!--===================================================-->
-        <!--End Data Table-->
     </div>
-    <div class="panel">
+    <div class="py-10 px-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>{{__('Purchase invoices')}}</h4>
+                </div>
+                <div class="bg-white border-double border-4 border-light-blue-500">
+                    <div class="panel-body">
+                        <table  id="table" class="table ">
+                            <thead>
+                            <tr>
+                                <th >{{ __('Number') }}</th>
+                                <th >{{ __('Total') }}</th>
+                                <th >{{ __('Discount') }}</th>
+                                <th >{{ __('Paid') }}</th>
+                                <th >{{ __('Remaining') }}</th>
+                                <th >{{ __('Note') }}</th>
+                                <th scope="col">{{ __('Actions') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($supplier->invoices as $invoice)
+                                <tr @if($invoice->return)style="text-decoration: line-through"@endif>
+                                    <td>{{ $invoice->number }}</td>
+                                    <td>{{ $invoice->total }}</td>
+                                    <td>{{ $invoice->discount }}</td>
+                                    <td>{{ $invoice->paid }}</td>
+                                    <td>{{ $invoice->remaining}}</td>
+                                    <td>{{ $invoice->note }}</td>
+                                    <td>
+                                        <a href="{{ route('purchase.show', $invoice) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
+                                        <a href="" onclick="removeUser('{{ $invoice->id }}', '{{ route('invoice.delete', $invoice) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">{{__('السندات')}}</h3>
         </div>
@@ -148,9 +132,9 @@
         </div>
         <!--===================================================-->
         <!--End Data Table-->
-    </div>
+    </div> --}}
 
-    <div class="panel">
+    {{-- <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">{{__('Extra Data') }}</h3>
         </div>
@@ -201,8 +185,8 @@
         </div>
         <!--===================================================-->
         <!--End Data Table-->
-    </div>
-    <div class="modal fade" id="editDataModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel"
+    </div> --}}
+    {{-- <div class="modal fade" id="editDataModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Suppliers;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
-class SuppliersController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class SuppliersController extends Controller
      */
     public function index()
     {
-        $suppliers = Suppliers::with(['type'])->get();
-        return view('suppliers.index', compact('suppliers'));
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class SuppliersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Suppliers  $suppliers
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Suppliers $suppliers)
+    public function show(Item $item)
     {
         //
     }
@@ -53,10 +52,10 @@ class SuppliersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Suppliers  $suppliers
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Suppliers $suppliers)
+    public function edit(Item $item)
     {
         //
     }
@@ -65,10 +64,10 @@ class SuppliersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Suppliers  $suppliers
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Suppliers $suppliers)
+    public function update(Request $request, Item $item)
     {
         //
     }
@@ -76,10 +75,10 @@ class SuppliersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Suppliers  $suppliers
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Suppliers $suppliers)
+    public function destroy(Item $item)
     {
         //
     }

@@ -8,16 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     use HasFactory;
-    protected $fillable = ['total','number','type','return','paid','remaining','supplier_id','customer_id','user_id','note'];
+    protected $fillable = ['total','number','type','return','paid','remaining','supplier_id','customer_id','user_id','note','due_date'];
 
-    // public function items()
-    // {
-    //     return $this->belongsToMany(Item::class, 'invoice_item')->withPivot('quantity','price','warehouse_id','weight','total','name')->withTimestamps();
-    // }
-    // public function products()
-    // {
-    //     return $this->belongsToMany(Production::class, 'invoice_products','invoice_id','product_id')->withPivot('quantity','price','total','name')->withTimestamps();
-    // }
+    /* ************ Relation *********** */
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }
@@ -26,5 +19,9 @@ class Invoice extends Model
     }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function item()
+    {
+        return $this->belongsToMany(Item::class)->withPivot('quantity','price','weight','total','name')->withTimestamps();
     }
 }

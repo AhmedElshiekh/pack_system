@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::paginate(10);
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'phone' => 'required|string|min:11',
+            'address' => 'nullable|string',
+            'paid' => 'integer',
+            'remaining' => 'integer',
+            'note' => 'nullable|string',
+        ]);
+        Customer::Create($request->all());
+        return redirect()->route('customer')->with('success', __('Customer created successfully'));
     }
 
     /**
@@ -46,7 +56,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customers.show', compact('customer'));
     }
 
     /**
@@ -57,7 +67,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', compact('customer'));
     }
 
     /**
@@ -69,7 +79,14 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'phone' => 'nullable|string|min:11',
+            'address' => 'nullable|string',
+            'note' => 'nullable|string',
+        ]);
+        $customer->update($request->all());
+        return redirect()->route('customer')->with('success', __('Customer updated successfully'));
     }
 
     /**

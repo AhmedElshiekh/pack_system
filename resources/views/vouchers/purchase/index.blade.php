@@ -1,19 +1,26 @@
 @extends('layouts.master')
 
-@section('title',__('مرتجعات المشتريات'))
-
 @section('content')
 
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title">{{__('مرتجعات المشتريات')}}</h3>
-
+            <h3 class="panel-title">{{__('Voucher Table')}}</h3>
         </div>
         <!--Data Table-->
         <!--===================================================-->
         <div class="panel-body">
+            <div class="pad-btm form-inline">
+                <div class="row">
+                    <div class="col-sm-6 table-toolbar-left">
+                        <div class="btn-group">
+                            <a href="{{ route('perishable.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <div class="row">
-                <form  method="post" action="{{route('invoice.returned.filter')}}">
+                <form  method="post" action="{{route('perishable.filter')}}">
                     @csrf
                     <div class="col-md-3 form-group">
                         <label>{{__('From')}}</label>
@@ -31,33 +38,35 @@
                 <thead>
                 <tr>
                     <th >{{ __('Number') }}</th>
-                    <th >{{ __('Invoice Number') }}</th>
-                    <th >{{ __('Total') }}</th>
-                    <th >{{ __('Paid') }}</th>
-                    <th >{{ __('Remaining') }}</th>
-                    <th >{{ __('Supplier') }}</th>
-                    <th >{{ __('Note') }}</th>
-                    @canany(['update invoice', 'delete invoice'])
+                    <th >{{ __('Category') }}</th>
+                    <th >{{ __('Amount') }}</th>
+                    <th >{{ __('Paid For') }}</th>
+                    <th>{{__('User')}}</th>
+                    <th>{{__('To')}}</th>
+                    @canany(['read voucher'])
                         <th scope="col">{{ __('Actions') }}</th>
                     @endcanany
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($returned as $return)
+                @foreach($vouchers as $voucher)
                     <tr>
-                        <td>{{ $return->number }}</td>
-                        <td>{{ $return->invoice->number }}</td>
-                        <td>{{ $return->invoice->total }}</td>
-                        <td>{{ $return->invoice->paid }}</td>
-                        <td>{{ $return->invoice->remaining}}</td>
-                        <td>{{ $return->invoice->supplier->name }}</td>
-                        <td>{{ $return->invoice->note }}</td>
-
-                        @canany(['update invoice', 'read invoice'])
+                        <td>{{ $voucher->number }}</td>
+                        <td>@if($voucher->voucher_cat){{$voucher->category->name}}@endif</td>
+                        <td>{{ $voucher->amount }}</td>
+                        <td>{{ $voucher->paid_for }}</td>
+                        <td>{{ $voucher->user->name }}</td>
+                        @if($voucher->supplier_id)
+                           <td>{{ $voucher->supplier->name }}</td>
+                        @elseif($voucher->employee_id)
+                            <td>{{ $voucher->employee->name }}</td>
+                        @else
+                            <td>{{ $voucher->for }}</td>
+                        @endif
+                        @canany(['read voucher'])
                             <td>
-                                @can('read invoice')
-                                    <a href="{{ route('invoice.printReturn', $return) }}"  class="btn btn-success fa fa-eye"></a>
-
+                                @can('read voucher')
+                                    <a href="{{ route('voucher.show', $voucher) }}"  class="btn btn-success fa fa-eye"></a>
                                 @endcan
                             </td>
                         @endcanany
@@ -75,12 +84,7 @@
 @stop
 
 @section('scripts')
-
     <script>
-
-
-
-        // $('#table').footable() ;
         $('#table').dataTable( {
             "responsive": false,
             "language": {
@@ -94,10 +98,6 @@
                 'excel', 'pdf', 'print'
             ],
             'order':[['0','desc']]
-
         } );
-
-
     </script>
-
 @stop

@@ -4,11 +4,13 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Supplier') }}
         </h2>
+        <div class="">
+            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
+        </div>
     @endsection
 
     <div class="panel">
-        <!--Block Styled Form -->
-        <!--===================================================-->
+        <div class="panel-heading"> </div>
         <form method="post" action="{{route('supplier.update',$supplier)}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
             <div class="panel-body">

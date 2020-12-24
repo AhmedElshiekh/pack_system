@@ -9,5 +9,11 @@ class Supplier extends Model
 {
     use HasFactory;
     protected $fillable = ['name','phone','address','note','paid','remaining'];
+
+    /********** Relation ******* */
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
+
     
 }

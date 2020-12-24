@@ -81,7 +81,7 @@ class SupplierController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => 'required|string|min:11',
             'address' => 'required|string',
             'note' => 'nullable|string',
         ]);
