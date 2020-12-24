@@ -1,8 +1,12 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\User;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+// use Database\Seeders\users;
 
 class UserSeeder extends Seeder
 {
@@ -13,11 +17,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::Create([
+        DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'support@aisent.net',
-            'password' => bcrypt('suppoer123'),
+            'password' => 'support123',
         ]);
-        $user->save();
     }
 }
