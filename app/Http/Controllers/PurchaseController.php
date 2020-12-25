@@ -46,7 +46,7 @@ class PurchaseController extends Controller
         $invoice->type = 'purchase';
         // dd($invoice->type);
         $lastInvoice = Invoice::where('type', $invoice->type)->latest()->first();
-        $type = $invoice->type == 'purchase' ? 'out' : 'in';
+        $type = $invoice->type == 'purchase' ? 'Out' : 'In';
 
         if ($lastInvoice) {
             $lastNumber =   $lastInvoice->number;
@@ -79,7 +79,7 @@ class PurchaseController extends Controller
 
         $itemLoop = $request->input('item_count');
         for ($i = 1; $i <= $itemLoop; $i++) {
-            
+
             $item = new Item();
             $item->invoice_id = $invoice->id;
             // dd($item->invoice_id);
@@ -101,7 +101,8 @@ class PurchaseController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        return view('invoice.purchase.show', compact('invoice'));
+        $items = Item::where('invoice_id', $invoice->id)->get();
+        return view('invoice.purchase.show', compact('invoice','items'));
     }
 
     /**

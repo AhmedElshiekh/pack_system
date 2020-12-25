@@ -21,7 +21,7 @@ class SaleController extends Controller
         return view('invoice.sales.index',compact('invoices'));
 
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +45,7 @@ class SaleController extends Controller
         $invoice->type = 'sale';
         // dd($invoice->type);
         $lastInvoice = Invoice::where('type', $invoice->type)->latest()->first();
-        $type = $invoice->type == 'purchase' ? 'out' : 'in';
+        $type = $invoice->type == 'purchase' ? 'Out' : 'In';
 
         if ($lastInvoice) {
             $lastNumber =   $lastInvoice->number;
@@ -78,7 +78,7 @@ class SaleController extends Controller
 
         $itemLoop = $request->input('item_count');
         for ($i = 1; $i <= $itemLoop; $i++) {
-            
+
             $item = new Item();
             $item->invoice_id = $invoice->id;
             $item->name = $request->input('item_name_'.$i);
@@ -100,9 +100,8 @@ class SaleController extends Controller
      */
     public function show(Invoice $invoice)
     {
-
-        return view('invoice.sales.show',compact('invoice'));
-
+        $items = Item::where('invoice_id', $invoice->id)->get();
+        return view('invoice.purchase.show', compact('invoice','items'));
     }
 
 
@@ -118,5 +117,5 @@ class SaleController extends Controller
     }
 
 
-    
+
 }

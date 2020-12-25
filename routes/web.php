@@ -17,6 +17,7 @@ Route::view('/', 'auth.login');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
+    
     Route::view('/', 'dashboard');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
@@ -41,7 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/create', [CustomerController::class, 'create'])->name('customer.create');
         Route::Post('/store', [CustomerController::class, 'store'])->name('customer.store');
 
-        Route::get('/show', [CustomerController::class, 'show'])->name('customer.show');
+        Route::get('/show/{customer}', [CustomerController::class, 'show'])->name('customer.show');
 
         Route::get('edit/{customer}', [CustomerController::class, 'edit'])->name('customer.edit');
         Route::post('edit/{customer}', [CustomerController::class, 'update'])->name('customer.update');

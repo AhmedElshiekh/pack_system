@@ -12,7 +12,7 @@
         </div>
     @endsection
 
-    <div class="panel">
+    <div class="panel p-4">
         <div class="panel-heading">
             <form  method="post" action="{{ route('purchase.filter') }}">
                 @csrf
@@ -61,7 +61,7 @@
                             <td>{{ $invoice->user }}</td>
                             <td>{{ $invoice->created_at->format('d-m-Y') }}</td>
                             <td>{{ $invoice->note }}</td>
-                            <td>    
+                            <td>
                                 <a href="{{ route('purchase.show', $invoice) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
                                 <a href="" onclick="removeUser('{{ $invoice->number }}','{{ route('invoice.delete', $invoice) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
                             </td>
