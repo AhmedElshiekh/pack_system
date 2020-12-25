@@ -1,0 +1,15 @@
+{
+    "invoice" : "فاتورة",
+    "purchase": "مشتريات",
+    "Purchases": "المشتريات",
+    "sales": "مبيعات",
+    "Sales": "المبيعات",
+    "Suppliers": "الموردين",
+    "Customers": "العملاء",
+
+    "import": "إيرادات",
+    "Imports": "إيرادات",
+    "export": "مصروفات",
+    "Exports": "مصروفات"
+
+}

@@ -18,10 +18,10 @@ class CreateInvoicesTable extends Migration
             $table->string('number');
             $table->string('type');
             $table->string('note')->nullable();
-            $table->integer('total');
-            $table->integer('discount');
-            $table->integer('paid');
-            $table->integer('remaining');
+            $table->float('total');
+            $table->float('discount');
+            $table->float('paid');
+            $table->float('remaining');
             $table->date('due_date')->nullable();
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->bigInteger('customer_id')->unsigned()->nullable();

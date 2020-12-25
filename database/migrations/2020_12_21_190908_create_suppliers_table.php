@@ -19,8 +19,8 @@ class CreateSuppliersTable extends Migration
             $table->string('phone');
             $table->string('address')->nullable();
             $table->string('note')->nullable();
-            $table->Integer('paid')->default(0);
-            $table->Integer('remaining')->default(0);
+            $table->float('paid')->default(0);
+            $table->float('remaining')->default(0);
             $table->timestamps();
             // $table->string('email');
             // $table->bigInteger('type_id')->unsigned();

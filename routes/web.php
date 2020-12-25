@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SaleController;
@@ -14,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'auth.login');
+// Route::view('/register', 'auth.login');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    
+
+    // Route::view('/register', 'auth.regis');
     Route::view('/', 'dashboard');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
@@ -86,5 +90,41 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });/* ****End Routes***** */
 
 
+    /************** imports routes************ */
+    Route::group(['prefix' => 'imports'], function () {
 
+        Route::get('/', [ImportController::class, 'index'])->name('imports');
+        Route::post('/filter', [ImportController::class, 'index'])->name('imports.filter');
+
+        Route::get('/create', [ImportController::class, 'create'])->name('imports.create');
+        Route::Post('/store', [ImportController::class, 'store'])->name('imports.store');
+
+        Route::get('/show/{voucher}', [ImportController::class, 'show'])->name('imports.show');
+
+        // Route::get('edit/{voucher}', [ImportController::class, 'edit'])->name('imports.edit');
+        // Route::post('edit/{voucher}', [ImportController::class, 'update'])->name('imports.update');
+
+        Route::get('delete/{voucher}', [ImportController::class, 'destroy'])->name('imports.delete');
+    });/* ****End Routes***** */
+
+    /************** exports routes************ */
+    Route::group(['prefix' => 'exports'], function () {
+
+        Route::get('/', [ExportController::class, 'index'])->name('exports');
+        Route::post('/filter', [ExportController::class, 'index'])->name('exports.filter');
+
+        Route::get('/create', [ExportController::class, 'create'])->name('exports.create');
+        Route::Post('/store', [ExportController::class, 'store'])->name('exports.store');
+
+        Route::get('/show/{voucher}', [ExportController::class, 'show'])->name('exports.show');
+
+        // Route::get('edit/{voucher}', [ExportController::class, 'edit'])->name('exports.edit');
+        // Route::post('edit/{voucher}', [ExportController::class, 'update'])->name('exports.update');
+
+        Route::get('delete/{voucher}', [ExportController::class, 'destroy'])->name('exports.delete');
+    });/* ****End Routes***** */
+
+
+
+    
 });

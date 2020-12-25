@@ -9,31 +9,41 @@
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
-
+                <div class="sm:m-5"></div>
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
                     <x-jet-nav-link href="{{ route('supplier') }}" :active="request()->routeIs('supplier')">
                         {{ __('Suppliers') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
                     <x-jet-nav-link href="{{ route('purchase') }}" :active="request()->routeIs('purchase')">
-                        {{ __('Purchase') }}
+                        {{ __('Purchases') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
                     <x-jet-nav-link href="{{ route('customer') }}" :active="request()->routeIs('customer')">
                         {{ __('Customers') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
                     <x-jet-nav-link href="{{ route('sales') }}" :active="request()->routeIs('sales')">
                         {{ __('Sales') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
+                    <x-jet-nav-link href="{{ route('imports') }}" :active="request()->routeIs('imports')">
+                        {{ __('Imports') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
+                    <x-jet-nav-link href="{{ route('exports') }}" :active="request()->routeIs('exports')">
+                        {{ __('Exports') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -78,7 +88,7 @@
                         <div class="border-t border-gray-100"></div>
 
                         <!-- Team Management -->
-                        {{-- @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                        @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Team') }}
                             </div>
@@ -106,7 +116,7 @@
                             @endforeach
 
                             <div class="border-t border-gray-100"></div>
-                        @endif --}}
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -199,7 +209,7 @@
                 </form>
 
                 <!-- Team Management -->
-                {{-- @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="border-t border-gray-200"></div>
 
                     <div class="block px-4 py-2 text-xs text-gray-400">
@@ -225,7 +235,7 @@
                     @foreach (Auth::user()->allTeams() as $team)
                         <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
                     @endforeach
-                @endif --}}
+                @endif
             </div>
         </div>
     </div>
