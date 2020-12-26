@@ -66,6 +66,7 @@ class PurchaseController extends Controller
         $invoice->total = $request->input('total');
         $invoice->paid = $request->input('paid');
         $invoice->remaining = $request->input('remaining');
+        $invoice->discount = $request->input('discount');
         $invoice->note = $request->input('note');
         $invoice->due_date = $request->input('due_date');
         $invoice->save();
@@ -86,7 +87,8 @@ class PurchaseController extends Controller
             $item->name = $request->input('item_name_'.$i);
             $item->quantity = $request->input('item_quantity_'.$i);
             $item->weight = $request->input('item_weight_'.$i);
-            $item->Price = $request->input('item_price_'.$i);
+            $item->price = $request->input('item_price_'.$i);
+            $item->total = $request->input('item_total_'.$i);
             $item->save();
 
         }

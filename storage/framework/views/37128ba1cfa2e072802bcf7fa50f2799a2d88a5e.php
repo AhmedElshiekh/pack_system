@@ -1,37 +1,40 @@
-<?php $__env->startSection('content'); ?>
+ <?php if (isset($component)) { $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\AppLayout::class, []); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
 
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo e(__('Voucher Table')); ?></h3>
+    <?php $__env->startSection('title','Sales'); ?>
+    <?php $__env->startSection('header'); ?>
+        <div class="">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                <?php echo e(__('Import vouchers')); ?>
+
+            </h2>
         </div>
-        <!--Data Table-->
-        <!--===================================================-->
-        <div class="panel-body">
-            <div class="pad-btm form-inline">
-                <div class="row">
-                    <div class="col-sm-6 table-toolbar-left">
-                        <div class="btn-group">
-                            <a href="<?php echo e(route('perishable.create')); ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-                        </div>
-                    </div>
+        <div class="">
+            <a href="<?php echo e(route('imports.create')); ?>" class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-plus"></i> <?php echo e(__('Create a import voucher')); ?></a>
+        </div>
+    <?php $__env->stopSection(); ?>
 
+    <div class="panel p-3">
+        <div class="panel-heading">
+            <form  method="post" action="<?php echo e(route('imports.filter')); ?>">
+                <?php echo csrf_field(); ?>
+                <div class="col-md-3 form-group">
+                    <label><?php echo e(__('From')); ?></label>
+                    <input type="date" name="from" class="form-control" style="line-height: 15px" required>
                 </div>
-            </div>
-            <div class="row">
-                <form  method="post" action="<?php echo e(route('perishable.filter')); ?>">
-                    <?php echo csrf_field(); ?>
-                    <div class="col-md-3 form-group">
-                        <label><?php echo e(__('From')); ?></label>
-                        <input type="date" name="from" class="form-control" style="line-height: 15px" required>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label><?php echo e(__('To')); ?></label>
-                        <input type="date" name="to" class="form-control " style="line-height: 15px" required>
-                    </div>
-                    <button type="submit" class="btn btn-active-default" style="margin-top: 25px;width: 100px;"> <?php echo e(__('filter')); ?></button>
-                </form>
+                <div class="col-md-3 form-group">
+                    <label><?php echo e(__('To')); ?></label>
+                    <input type="date" name="to" class="form-control " style="line-height: 15px" required>
+                </div>
+                <button type="submit" class="btn btn-outline-warning" style="margin-top: 25px;width: 100px;"> <?php echo e(__('filter')); ?></button>
+            </form>
+        </div>
+        <div class="panel-body">
 
-            </div>
             <table  id="table" class="table ">
                 <thead>
                 <tr>
@@ -64,7 +67,7 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['read voucher'])): ?>
                             <td>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('read voucher')): ?>
-                                    <a href="<?php echo e(route('voucher.show', $voucher)); ?>"  class="btn btn-success fa fa-eye"></a>
+                                    <a href="<?php echo e(route('imports.show', $voucher)); ?>"  class="btn btn-success fa fa-eye"></a>
                                 <?php endif; ?>
                             </td>
                         <?php endif; ?>
@@ -79,25 +82,28 @@
     </div>
 
 
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('scripts'); ?>
-    <script>
-        $('#table').dataTable( {
-            "responsive": false,
-            "language": {
-                "paginate": {
-                    "previous": '<i class="fa fa-angle-left"></i>',
-                    "next": '<i class="fa fa-angle-right"></i>'
-                }
-            },
-            dom: 'Bfrtip',
-            buttons: [
-                'excel', 'pdf', 'print'
-            ],
-            'order':[['0','desc']]
-        } );
-    </script>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /media/a7m6d/Disk_Data/project/laravel_PJ/Aisent/carton_sys2/resources/views/vouchers/imports/index.blade.php ENDPATH**/ ?>
+    <?php $__env->startSection('scripts'); ?>
+        <script>
+            $('#table').dataTable( {
+                "responsive": false,
+                "language": {
+                    "paginate": {
+                        "previous": '<i class="fa fa-angle-left"></i>',
+                        "next": '<i class="fa fa-angle-right"></i>'
+                    }
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ],
+                'order':[['0','desc']]
+            } );
+        </script>
+    <?php $__env->stopSection(); ?>
+ <?php if (isset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da)): ?>
+<?php $component = $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da; ?>
+<?php unset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?> 
+<?php /**PATH /media/a7m6d/Disk_Data/project/laravel_PJ/Aisent/carton_sys2/resources/views/vouchers/imports/index.blade.php ENDPATH**/ ?>

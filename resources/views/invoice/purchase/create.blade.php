@@ -56,18 +56,28 @@
                         <table id="table" class="table ">
                             <thead>
                                 <th>{{__('Name')}}</th>
-                                <th>{{__('Price')}}</th>
-                                <th>{{__('Weight')}}</th>
+                                <th>{{__('Price (the ton)')}}</th>
+                                <th>{{__('Weight (kg)')}}</th>
                                 <th>{{__('Quantity')}}</th>
                                 <th>{{__('Total')}}</th>
                                 {{-- <th>{{__('Warehouse')}}</th> --}}
                             </thead>
-                            <tbody id='tbody'> </tbody>
+                            <tbody id='tbody'>
+                                <tr>
+                                    {{-- <input class="form-control" type="hidden" name="item_count" value="1"> --}}
+                                    <td><input class="form-control" type="text" name="item_name_1" value="" ></td>
+                                    <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="1" name="item_price_1" value="" >  </td>
+                                    <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="1" name="item_weight_1" value="" >  </td>
+                                    <td><input class="form-control qty" type="number"  onkeyup="itemTotal(this)" data-id="1" name="item_quantity_1" value="1" required>  </td>
+                                    <td><input class="form-control itemTotal" type="number" name="item_total_1" value="" readonly>  </td>
+                                    <td><button type="button" class="btn btn-link " onclick="removeAttr(this)">{{ __('Delete') }}</button></td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
-                    <div class="col-2 flex-row">
-                        <div class="flex flex-col">
-                            <a class="btn btn-outline-secondary" id="addBtn">{{__("Add Item")}}</a>
+                    <div class="col-2 flex items-end">
+                        <div class="m-4">
+                            <a class="btn btn-outline-secondary flex-col" id="addBtn">{{__("Add Item")}}</a>
                         </div>
                     </div>
                 </div>
@@ -172,32 +182,19 @@
     @section('scripts')
         <script>
             $(document).ready(function() {
-                var rowIdx = 0;
+                var rowIdx = 1;
                 $('#addBtn').on('click', function () {
                     $('#tbody').append(
-                        // {++rowIdx}
                         `<tr>
                             <input class="form-control" type="hidden" name="item_count" value="${++rowIdx}">
                             <td><input class="form-control" type="text" name="item_name_${rowIdx}" value="" ></td>
-                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="'+index+'" name="item_price_${rowIdx}" value="" >  </td>
-                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="'+index+'" name="item_weight_${rowIdx}" value="" >  </td>
-                            <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="" name="item_quantity_${rowIdx}" value="1" required>  </td>
-                            <td><input class="form-control itemTotal" type="number" name="items['+index+'][total]" value="" readonly>  </td>
+                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_price_${rowIdx}" value="" >  </td>
+                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_weight_${rowIdx}" value="" >  </td>
+                            <td><input class="form-control qty" type="number"  onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_quantity_${rowIdx}" value="1" required>  </td>
+                            <td><input class="form-control itemTotal" type="number" name="item_total_${rowIdx}" value="" readonly>  </td>
                             <td><button type="button" class="btn btn-link " onclick="removeAttr(this);">{{ __('Delete') }}</button></td>
                         </tr>`
                     );
-                });
-                $('#tbody').on('click', '.remove', function () {
-                    var child = $(this).closest('tr').nextAll();
-                    child.each(function () {
-                        var id = $(this).attr('id');
-                        var idx = $(this).children('.row-index').children('p');
-                        var dig = parseInt(id.substring(1));
-                        idx.html(`Row ${dig - 1}`);
-                        $(this).attr('id', `R${dig - 1}`);
-                    });
-                    $(this).closest('tr').remove();
-                    rowIdx--;
                 });
             });
             function removeAttr(el) {
@@ -235,11 +232,11 @@
             }
             function itemTotal(qty) {
             let id = $(qty).attr('data-id');
-            let price =  $('input[name="items['+id+'][price]"]').val();
-            let weight =  $('input[name="items['+id+'][weight]"]').val();
-            let Qty =  $('input[name="items['+id+'][quantity]"]').val();
+            let price =  $('input[name="item_price_'+id+'"]').val();
+            let weight =  $('input[name="item_weight_'+id+'"]').val();
+            let Qty =  $('input[name="item_quantity_'+id+'"]').val();
             let itemTotalPrice = price*((Qty*weight)/1000) ;
-            $('input[name="items['+id+'][total]"]').attr('value',itemTotalPrice);
+            $('input[name="item_total_'+id+'"]').attr('value',itemTotalPrice);
                 let totalPrice = 0;
                 for(var i=0;i<$('.itemTotal').length;i++){
                     if(parseInt($('.itemTotal')[i].value))

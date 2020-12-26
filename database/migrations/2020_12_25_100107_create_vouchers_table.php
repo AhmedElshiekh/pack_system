@@ -22,7 +22,9 @@ class CreateVouchersTable extends Migration
             $table->string('to')->nullable();
             $table->date('pay_date')->nullable();
             $table->string('note')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

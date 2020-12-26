@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-10">
                         <table id="table" class="table ">
                             <thead>
                                 <th>{{__('Item Name')}}</th>
@@ -60,12 +60,16 @@
                                 <th>{{__('Total')}}</th>
                             </thead>
                             <tbody id='tbody'>
-
+                                <td><input class="form-control" type="text" name="item_name_1" value="" ></td>
+                                <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="1" name="item_price_1" value="" ></td>
+                                <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="1" name="item_quantity_1" value="1" required></td>
+                                <td><input class="form-control itemTotal" type="number" name="item_total_1" value="" readonly></td>
+                                <td><button type="button" class="btn btn-link " onclick="removeAttr(this);">{{ __('Delete') }}</button></td>
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-2 flex-row">
-                        <div class="flex flex-col">
+                    <div class="col-2 flex items-end">
+                        <div class="m-4">
                             <a class="btn btn-outline-secondary" id="addBtn">{{__("Add Item")}}</a>
                         </div>
                     </div>
@@ -87,7 +91,7 @@
                         <div class="form-group">
                             <label for="total">{{ __('Total') }}*</label>
                             <input type="number" id="total"  onkeyup="getRemaining()" class="form-control {{ $errors->has('total') ? 'is-invalid' : '' }} "
-                                    name="total" value="0" required >
+                                    name="total" value="0" required readonly>
                             @if($errors->has('total'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('total') }}
@@ -150,15 +154,15 @@
 
         <script>
             $(document).ready(function() {
-                var rowIdx = 0;
+                var rowIdx = 1;
                 $('#addBtn').on('click', function () {
                     $('#tbody').append(
                         `<tr>
                             <input class="form-control" type="hidden" name="item_count" value="${++rowIdx}">
                             <td><input class="form-control" type="text" name="item_name_${rowIdx}" value="" ></td>
-                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="'+index+'" name="item_price_${rowIdx}" value="" >  </td>
-                            <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="" name="item_quantity_${rowIdx}" value="1" required>  </td>
-                            <td><input class="form-control itemTotal" type="number" name="items['+index+'][total]" value="" readonly>  </td>
+                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_price_${rowIdx}" value="" >  </td>
+                            <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="${rowIdx}" name="item_quantity_${rowIdx}" value="1" required>  </td>
+                            <td><input class="form-control itemTotal" type="number" name="item_total_${rowIdx}" value="" readonly>  </td>
                             <td><button type="button" class="btn btn-link " onclick="removeAttr(this);">{{ __('Delete') }}</button></td>
                         </tr>`
                     );
@@ -212,11 +216,12 @@
                 $('#paid').val(0);
             }
             function itemTotal(qty) {
-            let Qty = qty.value;
+            // let Qty = qty.value;
             let id = $(qty).attr('data-id');
-            let price =  $('input[name="items['+id+'][price]"]').attr('value');
+            let price =  $('input[name="item_price_'+id+'"]').val();
+            let Qty =  $('input[name="item_quantity_'+id+'"]').val();
             let itemTotalPrice = price*Qty ;
-            $('input[name="items['+id+'][total]"]').attr('value',itemTotalPrice);
+            $('input[name="item_total_'+id+'"]').attr('value',itemTotalPrice);
                 let totalPrice = 0;
                 for(var i=0;i<$('.itemTotal').length;i++){
                     if(parseFloat($('.itemTotal')[i].value))

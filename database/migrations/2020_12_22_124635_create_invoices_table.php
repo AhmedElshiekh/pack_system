@@ -26,12 +26,10 @@ class CreateInvoicesTable extends Migration
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->bigInteger('customer_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            // $table->bigInteger('item_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
-            // $table->foreign('item_id')->references('id')->on('items');
         });
     }
 

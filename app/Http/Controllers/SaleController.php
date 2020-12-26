@@ -84,7 +84,8 @@ class SaleController extends Controller
             $item->name = $request->input('item_name_'.$i);
             // dd($item->name);
             $item->quantity = $request->input('item_quantity_'.$i);
-            $item->Price = $request->input('item_price_'.$i);
+            $item->price = $request->input('item_price_'.$i);
+            $item->total = $request->input('item_total_'.$i);
             $item->save();
 
         }
