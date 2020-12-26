@@ -11,9 +11,9 @@ class ExportController extends Controller
     public function index(Request $request)
     {
         if ($request->method() == 'GET') {
-            $vouchers = Voucher::where('type', 'exports')->get();
+            $vouchers = Voucher::where('type', 'export')->get();
         } else {
-            $vouchers = Voucher::where('type', 'exports')->get()->whereBetween('created_at', [$request->from . ' 00:00:00', $request->to . ' 24:00:00']);
+            $vouchers = Voucher::where('type', 'export')->get()->whereBetween('created_at', [$request->from . ' 00:00:00', $request->to . ' 24:00:00']);
         }
 
         return view('vouchers.exports.index', compact('vouchers'));
@@ -61,7 +61,7 @@ class ExportController extends Controller
 
     public function show(Voucher $voucher)
     {
-        return view('vouchers.imports.show');
+        return view('vouchers.exports.show',compact('voucher'));
     }
 
 

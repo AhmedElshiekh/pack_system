@@ -20,7 +20,7 @@
 
     <div class="panel">
         <div class="panel-body">
-            <table  id="table" class="table text-center table-striped table-border" style="width:100%">
+            <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
                 <thead>
                 <tr>
                     <th >#</th>

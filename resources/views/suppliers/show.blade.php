@@ -305,6 +305,7 @@
                         "next": '<i class="fa fa-angle-right"></i>'
                     }
                 },
+                "scrollX": true,
                 dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'

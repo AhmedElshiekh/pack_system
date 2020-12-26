@@ -112,6 +112,7 @@
             $('#table').footable() ;
             $('#table').dataTable( {
                 "responsive": false,
+                "scrollX": true,
                 "language": {
                     "paginate": {
                         "previous": '<i class="fa fa-angle-left"></i>',

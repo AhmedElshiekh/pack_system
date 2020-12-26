@@ -393,6 +393,38 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?> 
         </div>
+        <div class="pt-2 pb-3 space-y-1">
+             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.nav-link','data' => ['href' => ''.e(route('imports')).'','active' => request()->routeIs('imports')]]); ?>
+<?php $component->withName('jet-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['href' => ''.e(route('imports')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('imports'))]); ?>
+                <?php echo e(__('Imports')); ?>
+
+             <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?> 
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.nav-link','data' => ['href' => ''.e(route('exports')).'','active' => request()->routeIs('exports')]]); ?>
+<?php $component->withName('jet-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['href' => ''.e(route('exports')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('exports'))]); ?>
+                <?php echo e(__('Exports')); ?>
+
+             <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?> 
+        </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

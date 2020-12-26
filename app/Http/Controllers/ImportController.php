@@ -11,9 +11,9 @@ class ImportController extends Controller
     public function index(Request $request)
     {
         if ($request->method() == 'GET') {
-            $vouchers = Voucher::where('type', 'imports')->get();
+            $vouchers = Voucher::where('type', 'import')->get();
         } else {
-            $vouchers = Voucher::where('type', 'imports')->get()->whereBetween('created_at', [$request->from . ' 00:00:00', $request->to . ' 24:00:00']);
+            $vouchers = Voucher::where('type', 'import')->get()->whereBetween('created_at', [$request->from . ' 00:00:00', $request->to . ' 24:00:00']);
         }
 
         return view('vouchers.imports.index', compact('vouchers'));
@@ -59,7 +59,7 @@ class ImportController extends Controller
 
     public function show(Voucher $voucher)
     {
-        return view('vouchers.imports.show');
+        return view('vouchers.imports.show',compact('voucher'));
     }
 
 

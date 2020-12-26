@@ -29,15 +29,14 @@
         </div>
         <div class="panel-body">
 
-            <table  id="table" class="table ">
+            <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
                 <thead>
                 <tr>
                     <th >{{ __('Number') }}</th>
-                    <th >{{ __('Category') }}</th>
                     <th >{{ __('Amount') }}</th>
                     <th >{{ __('Paid For') }}</th>
-                    <th>{{__('User')}}</th>
-                    <th>{{__('To')}}</th>
+                    <th>{{__('Import from')}}</th>
+                    {{-- <th>{{__('User')}}</th> --}}
                     @canany(['read voucher'])
                         <th scope="col">{{ __('Actions') }}</th>
                     @endcanany
@@ -47,17 +46,10 @@
                 @foreach($vouchers as $voucher)
                     <tr>
                         <td>{{ $voucher->number }}</td>
-                        <td>@if($voucher->voucher_cat){{$voucher->category->name}}@endif</td>
                         <td>{{ $voucher->amount }}</td>
+                        <td>{{ $voucher->to }}</td>
                         <td>{{ $voucher->paid_for }}</td>
-                        <td>{{ $voucher->user->name }}</td>
-                        @if($voucher->supplier_id)
-                           <td>{{ $voucher->supplier->name }}</td>
-                        @elseif($voucher->employee_id)
-                            <td>{{ $voucher->employee->name }}</td>
-                        @else
-                            <td>{{ $voucher->for }}</td>
-                        @endif
+                        {{-- <td>{{ $voucher->user->name }}</td> --}}
                         @canany(['read voucher'])
                             <td>
                                 @can('read voucher')
@@ -86,6 +78,7 @@
                         "next": '<i class="fa fa-angle-right"></i>'
                     }
                 },
+                "scrollX": true,
                 dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'

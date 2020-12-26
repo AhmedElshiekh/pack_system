@@ -4,7 +4,7 @@
     @section('header')
         <div class="">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Export vouchers') }}
+                {{ __('Create import vouchers') }}
             </h2>
         </div>
         <div class="">
@@ -12,85 +12,76 @@
         </div>
     @endsection
 
-    <div class="panel p-2">
+    <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title">{{__('New Voucher')}}</h3>
         </div>
         <!--Block Styled Form -->
         <!--===================================================-->
         <form method="post" action="{{route('exports.store')}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
-        <div class="panel-body">
-            <input type="hidden" name="type" value="sales">
-           {{-- <input type="hidden" name="voucher_cat" value="1"> --}}
-            <div class="row">
-                <div class="col-md-6 mb-2 fl-l">
-                    <label for="voucher_cat">{{ __('Customers') }}*</label>
-                    <select name="customer_id" id="customer_id"
-                            class="form-control custom-select  select" required>
-                        <option value="" selected>{{ __('Select') }} {{ __('Customer') }}</option>
-                        @foreach($customers as $key=>$value)
-                            <option value="{{ $key }}">{{  __($value) }}</option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('customer_id'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('customer_id') }}
+            <div class="panel-body">
+                {{-- <input type="hidden" name="type" value="purchase"> --}}
+                <div class="row">
+                    <div class="col-sm-4" id="for">
+                        <div class="form-group">
+                            <label for="amount">{{ __('Export to') }}*</label>
+                            <input type="text"  class="form-control {{ $errors->has('') ? 'is-invalid' : '' }} "
+                                id="to" name="to" value="{{old('to')}}" >
+                            @if($errors->has('to'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('to') }}
+                                </div>
+                            @endif
                         </div>
-                    @endif
-                </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="amount">{{ __('amount') }}*</label>
+                            <input type="number"  class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }} "
+                                id="amount" name="amount" value="0" min="1" required>
+                            @if($errors->has('amount'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('amount') }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-sm-4" >
+                        <div class="form-group">
+                            <label for="amount">{{ __('Paid For') }}*</label>
+                            <input type="text"  class="form-control {{ $errors->has('for') ? 'is-invalid' : '' }} "
+                                id="for" name="paid_for" value="{{old('paid_for')}}" >
+                            @if($errors->has('paid_for'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('paid_for') }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
 
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="amount">{{ __('amount') }}*</label>
-                        <input type="number"  class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }} "
-                               id="amount" name="amount" value="" min="1" required>
-                        @if($errors->has('amount'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('amount') }}
-                            </div>
-                        @endif
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="address">{{ __('Note') }}</label>
+                            <textarea  class="form-control {{ $errors->has('note') ? 'is-invalid' : '' }} "
+                                    name="note" value="{{ old('note') }}" ></textarea>
+                            @if($errors->has('note'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('note') }}
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-3" >
-                    <div class="form-group">
-                        <label for="amount">{{ __('Paid For') }}*</label>
-                        <input type="text"  class="form-control {{ $errors->has('for') ? 'is-invalid' : '' }} "
-                               id="for" name="paid_for" value="{{old('paid_for')}}" required>
-                        @if($errors->has('paid_for'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('paid_for') }}
-                            </div>
-                        @endif
-                    </div>
-                </div>
-
             </div>
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="form-group">
-                        <label for="address">{{ __('Note') }}</label>
-                        <textarea  class="form-control {{ $errors->has('note') ? 'is-invalid' : '' }} "
-                                   name="note" value="{{ old('note') }}" ></textarea>
-                        @if($errors->has('note'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('note') }}
-                            </div>
-                        @endif
-                    </div>
-                </div>
-
+            <div class="panel-body text-center">
+                <button class="btn btn-outline-success rounded-0 my-2 px-5" type="submit">{{__('Save')}}</button>
             </div>
-
-        </div>
-        <div class="panel-footer text-right">
-            <button class="btn btn-primary my-2" type="submit">{{__('Save')}}</button>
-        </div>
         </form>
 
     </div>
+
 
 
     @section('scripts')
@@ -148,5 +139,5 @@
         </script>
     @endsection
 
-</x-app-layout>
 
+</x-app-layout>

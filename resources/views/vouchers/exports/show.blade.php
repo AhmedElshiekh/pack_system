@@ -1,8 +1,48 @@
-@extends('layouts.master')
-@section('content')
+<x-app-layout>
 
+    @section('title',__('Invoice'))
+    @section('header')
+        <div class="">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{__("Voucher information")}}
+            </h2>
+        </div>
+        <div class="">
+            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
+        </div>
+    @endsection
 
-    <!--===================================================-->
+    <div class="invoice-wrapper p-15">
+        <section class="invoice-container">
+            <div class="invoice-inner">
+                <div class="row">
+                    <div class="col-xs-6 img">
+                        <x-jet-authentication-card-logo class="block h-9 w-auto" />
+                    </div>
+                    <div class="col-xs-6">
+                        <h4 class="ltr"> {{$voucher->number}}#  {{__('Invoice number')}} </h4>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <address>
+                            <strong>{{__('Billed To')}} :</strong>
+                            <br>
+                            <strong>{{__('Address')}} :</strong>
+
+                        </address>
+                        <strong>{{__('Paid')}}</strong> : {{$voucher->paid}}<br>
+                    </div>
+                </div>
+                <div class="text-center no-print">
+                    <a class="btn btn-outline-dark px-5 rounded-0" onClick="jQuery('#page-content').print()">
+                        <i class="fa fa-print"></i> {{__('Print')}}
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
     <div class="invoice-wrapper">
         <section class="invoice-container">
             <div class="invoice-inner">
@@ -66,25 +106,27 @@
 
 
 
-@stop
+    @section('scripts')
 
-@section('scripts')
+        <script>
 
-    <script>
-
-        $('#table').footable() ;
-        $('#table').dataTable( {
-            "responsive": false,
-            "language": {
-                "paginate": {
-                    "previous": '<i class="fa fa-angle-left"></i>',
-                    "next": '<i class="fa fa-angle-right"></i>'
+            $('#table').footable() ;
+            $('#table').dataTable( {
+                "responsive": false,
+                "scrollX": true,
+                "language": {
+                    "paginate": {
+                        "previous": '<i class="fa fa-angle-left"></i>',
+                        "next": '<i class="fa fa-angle-right"></i>'
+                    }
                 }
-            }
-        } );
+            } );
 
 
-    </script>
+        </script>
 
-@stop
+    @stop
+
+</x-app-layout>
+
 

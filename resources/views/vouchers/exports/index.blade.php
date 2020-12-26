@@ -27,19 +27,16 @@
                 <button type="submit" class="btn btn-outline-info"  style=" margin-top: 25px;width: 100px;"> {{__('filter')}}</button>
             </form>
         </div><br>
-        <div class="panel-body">
-            <table  id="table" class="table ">
+        <div class="panel-body text-center">
+            <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
                 <thead>
                 <tr>
                     <th >{{ __('Number') }}</th>
                     <th >{{ __('Amount') }}</th>
-                    <th>{{__('To')}}</th>
+                    <th>{{__('Export to')}}</th>
                     <th >{{ __('Paid For') }}</th>
-                    <th>{{__('User')}}</th>
-
-                    @canany(['read voucher'])
-                        <th scope="col">{{ __('Actions') }}</th>
-                    @endcanany
+                    {{-- <th>{{__('User')}}</th> --}}
+                    <th scope="col">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,20 +44,12 @@
                     <tr>
                         <td>{{ $voucher->number }}</td>
                         <td>{{ $voucher->amount }}</td>
-                        @if($voucher->customer_id)
-                            <td>{{ $voucher->customer->name }}</td>
-                        @elseif($voucher->supplier_id)
-                            <td>{{ $voucher->supplier->name }}</td>
-                        @endif
+                        <td>{{ $voucher->to }}</td>
                         <td>{{ $voucher->paid_for }}</td>
-                        <td>{{ $voucher->user->name }}</td>
-                        @canany(['read voucher'])
-                            <td>
-                                @can('read supplier')
-                                    <a href="{{ route('exports.show', $voucher) }}"  class="btn btn-success fa fa-eye"></a>
-                                @endcan
-                            </td>
-                        @endcanany
+                        {{-- <td>{{ $voucher->user->name }}</td> --}}
+                        <td>
+                            <a href="{{ route('exports.show', $voucher) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -81,6 +70,7 @@
                         "next": '<i class="fa fa-angle-right"></i>'
                     }
                 },
+                "scrollX": true,
                 dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'
