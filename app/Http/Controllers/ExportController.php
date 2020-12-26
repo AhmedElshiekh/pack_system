@@ -54,7 +54,7 @@ class ExportController extends Controller
         $voucher->pay_date = $request->input('pay_date');
         $voucher->save();
 
-        return redirect()->route('exports')->with('success', 'Voucher Created Successfully');
+        return redirect()->route('exports',app()->getLocale())->with('success', 'Voucher Created Successfully');
     }
 
 

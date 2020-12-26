@@ -90,7 +90,7 @@ class SaleController extends Controller
 
         }
 
-        return redirect()->route('sales')->with('success','Invoice Created Successfully');
+        return redirect()->route('sales',app()->getLocale())->with('success','Invoice Created Successfully');
     }
 
     /**

@@ -4,17 +4,17 @@
     @section('header')
         <div class="">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Purchase') }}
+                {{ __('Purchase invoices') }}
             </h2>
         </div>
         <div class="">
-            <a href="{{ route('purchase.create') }}" class="btn btn-sm btn-outline-primary rounded-0"><i class="fa fa-plus"></i> {{__('Create a purchase invoice')}}</a>
+            <a href="{{ route('purchase.create',app()->getLocale()) }}" class="btn btn-sm btn-outline-primary rounded-0"><i class="fa fa-plus"></i> {{__('Create a purchase invoice')}}</a>
         </div>
     @endsection
 
     <div class="panel p-4">
         <div class="panel-heading">
-            <form  method="post" action="{{ route('purchase.filter') }}">
+            <form  method="post" action="{{ route('purchase.filter',app()->getLocale()) }}">
                 @csrf
                 <div class="col-md-3 form-group">
                     <label>{{__('From')}}</label>
@@ -30,7 +30,7 @@
         <div class="panel-body">
 
             <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
-                <thead>
+                <thead class="text-center">
                     <tr>
                         <th >{{ __('#') }}</th>
                         <th >{{ __('Number') }}</th>
@@ -39,7 +39,7 @@
                         <th >{{ __('Discount') }}</th>
                         <th >{{ __('Paid') }}</th>
                         <th >{{ __('Remaining') }}</th>
-                        <th >{{ __('User') }}</th>
+                        {{-- <th >{{ __('User') }}</th> --}}
                         <th >{{ __('Date') }}</th>
                         <th >{{ __('Note') }}</th>
                         {{-- @canany(['update invoice', 'delete invoice']) --}}
@@ -48,7 +48,7 @@
                         {{-- @endcanany --}}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @foreach($invoices as $invoice)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -58,12 +58,12 @@
                             <td>{{ $invoice->discount }}</td>
                             <td>{{ $invoice->paid }}</td>
                             <td>{{ $invoice->remaining}}</td>
-                            <td>{{ $invoice->user }}</td>
+                            {{-- <td>{{ $invoice->user }}</td> --}}
                             <td>{{ $invoice->created_at->format('d-m-Y') }}</td>
                             <td>{{ $invoice->note }}</td>
                             <td>
-                                <a href="{{ route('purchase.show', $invoice) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
-                                <a href="" onclick="removeUser('{{ $invoice->number }}','{{ route('invoice.delete', $invoice) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
+                                <a href="{{ route('purchase.show',[app()->getLocale(), $invoice])}}"  class="btn btn-sm btn-success fa fa-eye"></a>
+                                <a href="" onclick="removeUser('{{ $invoice->number }}','{{ route('invoice.delete',[app()->getLocale(), $invoice]) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
                             </td>
                         </tr>
                     @endforeach

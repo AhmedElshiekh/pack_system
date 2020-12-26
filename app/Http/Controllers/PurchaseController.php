@@ -95,7 +95,7 @@ class PurchaseController extends Controller
 
 
 
-        return redirect()->route('purchase')->with('success', 'Invoice Created Successfully');
+        return redirect()->route('purchase',app()->getLocale())->with('success', 'Invoice Created Successfully');
     }
 
     /**

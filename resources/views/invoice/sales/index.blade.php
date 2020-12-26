@@ -8,14 +8,14 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{ route('sales.create') }}" class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-plus"></i> {{__('Create a Sales invoice')}}</a>
+            <a href="{{ route('sales.create',app()->getLocale() ) }}" class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-plus"></i> {{__('Create a Sales invoice')}}</a>
         </div>
     @endsection
 
 
     <div class="panel">
         <div class="panel-heading">
-            <form  method="post" action="{{route('sales.filter')}}">
+            <form  method="post" action="{{route('sales.filter',app()->getLocale() )}}">
                 @csrf
                 <div class="col-md-3 form-group">
                     <label>{{__('From')}}</label>
@@ -31,7 +31,7 @@
         <div class="panel-body">
 
             <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
-                <thead>
+                <thead class="text-center">
                     <tr>
                         <th >#</th>
                         <th >{{ __('Number') }}</th>
@@ -45,7 +45,7 @@
                         <th scope="col">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @foreach($invoices as $invoice)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -58,8 +58,8 @@
                             <td>{{ $invoice->created_at->format('d-m-Y') }}</td>
                             <td>{{ $invoice->note }}</td>
                             <td>
-                                <a href="{{ route('sales.show', $invoice) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
-                                <a href="" onclick="removeUser('{{ $invoice->number }}', '{{ route('invoice.sales.delete', $invoice) }}', event)"  class="btn btn-sm btn-danger fa fa-trash-o"></a>
+                                <a href="{{ route('sales.show',[app()->getLocale(), $invoice]) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
+                                <a href="" onclick="removeUser('{{ $invoice->number }}', '{{ route('invoice.sales.delete',[app()->getLocale(), $invoice]) }}', event)"  class="btn btn-sm btn-danger fa fa-trash-o"></a>
                             </td>
                         </tr>
                     @endforeach

@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
+            <a href="{{route('supplier',app()->getLocale())}}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
         </div>
     @endsection
 
@@ -40,7 +40,7 @@
                                     <td>{{ $supplier->paid }}</td>
                                     <td>{{ $supplier->remaining }}</td>
                                     <td>
-                                        <a href="{{ route('supplier.edit', $supplier) }}"  class="btn btn-sm btn-success fa fa-edit"></a>
+                                        <a href="{{ route('supplier.edit',[ app()->getLocale(), $supplier]) }}"  class="btn btn-sm btn-success fa fa-edit"></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -80,8 +80,8 @@
                                     <td>{{ $invoice->remaining}}</td>
                                     <td>{{ $invoice->note }}</td>
                                     <td>
-                                        <a href="{{ route('purchase.show', $invoice) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
-                                        <a href="" onclick="removeUser('{{ $invoice->id }}', '{{ route('invoice.delete', $invoice) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
+                                        <a href="{{ route('purchase.show',[app()->getLocale(), $invoice]) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
+                                        <a href="" onclick="removeUser('{{ $invoice->id }}', '{{ route('invoice.delete',[app()->getLocale(), $invoic]e) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -135,7 +135,7 @@
         </div>
         <!--===================================================-->
         <!--End Data Table-->
-    </div> --}}
+    </div> --}}  URL::previous()
 
     {{-- <div class="panel">
         <div class="panel-heading">

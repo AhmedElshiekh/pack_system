@@ -8,13 +8,13 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{ route('exports.create') }}" class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-plus"></i> {{__('Create a export voucher')}}</a>
+            <a href="{{ route('exports.create',app()->getLocale()) }}" class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-plus"></i> {{__('Create a exports voucher')}}</a>
         </div>
     @endsection
 
     <div class="panel p-3">
         <div class="panel-heading">
-            <form  method="post" action="{{route('exports.filter')}}">
+            <form  method="post" action="{{route('exports.filter',app()->getLocale())}}">
                 @csrf
                 <div class="col-md-3 form-group">
                     <label>{{__('From')}}</label>
@@ -29,7 +29,7 @@
         </div>
         <div class="panel-body">
             <table  id="table" class="table table-striped table-bordered text-center no-footer dtr-inline" style="width:100%">
-                <thead>
+                <thead class="text-center">
                 <tr>
                     <th >{{ __('Number') }}</th>
                     <th >{{ __('Amount') }}</th>
@@ -39,7 +39,7 @@
                     <th scope="col">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                 @foreach($vouchers as $voucher)
                     <tr>
                         <td>{{ $voucher->number }}</td>
@@ -48,7 +48,7 @@
                         <td>{{ $voucher->paid_for }}</td>
                         {{-- <td>{{ $voucher->user->name }}</td> --}}
                         <td>
-                            <a href="{{ route('exports.show', $voucher) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
+                            <a href="{{ route('exports.show',[app()->getLocale(), $voucher]) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
                         </td>
                     </tr>
                 @endforeach

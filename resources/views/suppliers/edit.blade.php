@@ -5,13 +5,13 @@
             {{ __('Edit Supplier') }}
         </h2>
         <div class="">
-            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
+            <a href="{{route('supplier',app()->getLocale())}}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
         </div>
     @endsection
 
     <div class="panel">
         <div class="panel-heading"> </div>
-        <form method="post" action="{{route('supplier.update',$supplier)}}"  enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{route('supplier.update',[app()->getLocale(), $supplier])}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
             <div class="panel-body">
                 <div class="row">

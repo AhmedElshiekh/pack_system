@@ -9,13 +9,13 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
+            <a href="{{route('customer',app()->getLocale())}}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
         </div>
     @endsection
 
-    <div class="panel">
+    <div class="panel {{app()->getLocale()=='ar'?'text-right':''}}">
         <div class="panel-heading"></div>
-        <form method="post" action="{{route('customer.store')}}"  enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{route('customer.store' ,app()->getLocale())}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
             <div class="panel-body">
                 <div class="row">

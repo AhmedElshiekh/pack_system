@@ -7,16 +7,16 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
+            <a href="{{route('purchase',app()->getLocale())}}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
         </div>
     @endsection
 
 
-    <div class="panel">
+    <div class="panel {{app()->getLocale()=='ar'?'text-right':''}}">
         <div class="panel-heading"></div>
         <!--Block Styled Form -->
         <!--===================================================-->
-        <form method="post" action="{{route('purchase.store')}}"  enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{route('purchase.store',app()->getLocale())}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
             <div class="panel-body">
                 <input type="hidden" name="type" value="purchase">

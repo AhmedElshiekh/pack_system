@@ -6,7 +6,7 @@
             {{ __('Edit Customers') }}
         </h2>
         <div class="">
-            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
+            <a href="{{route('customer',app()->getLocale())}}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
         </div>
     @endsection
 
@@ -14,7 +14,7 @@
         <div class="panel-heading"></div>
         <!--Block Styled Form -->
         <!--===================================================-->
-        <form method="post" action="{{route('customer.update',$customer)}}"  enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{route('customer.update',app()->getLocale(),$customer)}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
             <div class="panel-body">
                 <div class="row">

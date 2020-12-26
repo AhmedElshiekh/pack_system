@@ -8,14 +8,14 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{ route('customer.create') }}" class="btn btn-outline-primary rounded-0"><i class="fa fa-plus"></i> {{__('Create Customer')}}</a>
+            <a href="{{ route('customer.create',app()->getLocale()) }}" class="btn btn-outline-primary rounded-0"><i class="fa fa-plus"></i> {{__('Create Customer')}}</a>
         </div>
     @endsection
 
     <div class="panel">
         <div class="panel-body">
             <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
-                <thead>
+                <thead class="text-center">
                 <tr>
                     <th >#</th>
                     <th >{{ __('Name') }}</th>
@@ -27,7 +27,7 @@
                     <th scope="col">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @foreach($customers as $customer)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -38,8 +38,8 @@
                             <td>{{ $customer->remaining }}</td>
                             <td>{{ $customer->note }}</td>
                             <td>
-                                <a href="{{ route('customer.edit', $customer) }}"  class="btn btn-primary btn-sm fa fa-edit"></a>
-                                <a href="{{ route('customer.show', $customer) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
+                                <a href="{{ route('customer.edit',[app()->getLocale(), $customer]) }}"  class="btn btn-primary btn-sm fa fa-edit"></a>
+                                <a href="{{ route('customer.show',[app()->getLocale(), $customer]) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
                             </td>
                         </tr>
                     @endforeach

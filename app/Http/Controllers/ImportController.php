@@ -53,7 +53,7 @@ class ImportController extends Controller
         $voucher->pay_date = $request->input('pay_date');
         $voucher->save();
 
-        return redirect()->route('imports')->with('success', 'Voucher Created Successfully');
+        return redirect()->route('imports',app()->getLocale())->with('success', 'Voucher Created Successfully');
     }
 
 

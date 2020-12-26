@@ -14,13 +14,13 @@
             </h2>
         </div>
         <div class="">
-            <a href="<?php echo e(route('imports.create')); ?>" class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-plus"></i> <?php echo e(__('Create a import voucher')); ?></a>
+            <a href="<?php echo e(route('imports.create',app()->getLocale())); ?>" class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-plus"></i> <?php echo e(__('Create a imports voucher')); ?></a>
         </div>
     <?php $__env->stopSection(); ?>
 
     <div class="panel p-3">
         <div class="panel-heading">
-            <form  method="post" action="<?php echo e(route('imports.filter')); ?>">
+            <form  method="post" action="<?php echo e(route('imports.filter',app()->getLocale())); ?>">
                 <?php echo csrf_field(); ?>
                 <div class="col-md-3 form-group">
                     <label><?php echo e(__('From')); ?></label>
@@ -35,7 +35,7 @@
         </div>
         <div class="panel-body">
             <table  id="table" class="table table-striped table-bordered text-center no-footer dtr-inline" style="width:100%">
-                <thead>
+                <thead class="text-center">
                 <tr>
                     <th ><?php echo e(__('Number')); ?></th>
                     <th ><?php echo e(__('Amount')); ?></th>
@@ -44,7 +44,7 @@
                     <th scope="col"><?php echo e(__('Actions')); ?></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                 <?php $__currentLoopData = $vouchers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $voucher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td><?php echo e($voucher->number); ?></td>
@@ -52,7 +52,7 @@
                         <td><?php echo e($voucher->to); ?></td>
                         <td><?php echo e($voucher->paid_for); ?></td>
                         <td>
-                            <a href="<?php echo e(route('imports.show', $voucher)); ?>"  class="btn btn-success btn-sm fa fa-eye"></a>
+                            <a href="<?php echo e(route('imports.show',[app()->getLocale(), $voucher])); ?>"  class="btn btn-success btn-sm fa fa-eye"></a>
                         </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

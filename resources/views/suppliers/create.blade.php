@@ -6,15 +6,15 @@
             {{ __('Create Supplier') }}
         </h2>
         <div class="">
-            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
+            <a href="{{  route('supplier',app()->getLocale()) }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Cancel')}}</a>
         </div>
     @endsection
 
     <div class="panel">
         <div class="panel-heading"></div>
-        <form method="post" action="{{route('supplier.store')}}"  enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{route('supplier.store',app()->getLocale())}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
-            <div class="panel-body">
+            <div class="panel-body {{app()->getLocale()=='ar'?'text-right':''}}">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
@@ -33,6 +33,7 @@
                             <label for="barcode">{{ __('Phone') }}</label>
                             <input type="text"  minlength="11" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }} "
                                     id="phone" name="phone" value="{{ old('phone') }}" required>
+                            <label class="text-sm text-gray-400"> *{{ __('Phone') }}</label>
                             @if($errors->has('phone'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('phone') }}

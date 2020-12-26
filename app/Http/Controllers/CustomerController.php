@@ -86,7 +86,7 @@ class CustomerController extends Controller
             'note' => 'nullable|string',
         ]);
         $customer->update($request->all());
-        return redirect()->route('customer')->with('success', __('Customer updated successfully'));
+        return redirect()->route('customer',app()->getLocale())->with('success', __('Customer updated successfully'));
     }
 
     /**

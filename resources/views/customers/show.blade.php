@@ -8,7 +8,7 @@
             </h2>
         </div>
         <div class="">
-            <a href="{{  URL::previous() }}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
+            <a href="{{route('customer',app()->getLocale())}}" class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-arrow-left"></i> {{__('Back')}}</a>
         </div>
     @endsection
 
@@ -41,7 +41,7 @@
                                     <td>{{ $customer->paid }}</td>
                                     <td>{{ $customer->remaining }}</td>
                                     <td>
-                                        <a href="{{ route('customer.edit', $customer) }}"  class="btn btn-info btn-sm fa fa-edit"></a>
+                                        <a href="{{ route('customer.edit',[app()->getLocale(), $customer]) }}"  class="btn btn-info btn-sm fa fa-edit"></a>
                                     </td>
                                 </tr>
                             </tbody>

@@ -35,7 +35,7 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased" @if(app()->getLocale()== 'ar')dir='rtl'@endif>
 
         <div class="flex flex-col h-screen justify-between bg-gray-100">
             @livewire('navigation-dropdown')
@@ -109,7 +109,7 @@
         <script src="{{ asset('front/plugins/datatables/media/js/dataTables.bootstrap.js') }}"></script>
         <script src="{{ asset('front/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>--}}
 
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         {{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 <script src="https://cdn.jsdelivr.net/es6-promise/latest/es6-promise.auto.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
