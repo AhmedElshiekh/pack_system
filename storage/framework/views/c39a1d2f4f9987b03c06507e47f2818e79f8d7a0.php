@@ -18,7 +18,7 @@
         </div>
     <?php $__env->stopSection(); ?>
 
-    <div class="panel">
+    <div class="panel p-4">
         <div class="panel-heading">
             <form  method="post" action="<?php echo e(route('purchase.filter')); ?>">
                 <?php echo csrf_field(); ?>
@@ -67,7 +67,7 @@
                             <td><?php echo e($invoice->user); ?></td>
                             <td><?php echo e($invoice->created_at->format('d-m-Y')); ?></td>
                             <td><?php echo e($invoice->note); ?></td>
-                            <td>    
+                            <td>
                                 <a href="<?php echo e(route('purchase.show', $invoice)); ?>"  class="btn btn-sm btn-success fa fa-eye"></a>
                                 <a href="" onclick="removeUser('<?php echo e($invoice->number); ?>','<?php echo e(route('invoice.delete', $invoice)); ?>', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
                             </td>
