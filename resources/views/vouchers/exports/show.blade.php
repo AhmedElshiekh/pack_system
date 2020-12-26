@@ -16,25 +16,30 @@
         <section class="invoice-container">
             <div class="invoice-inner">
                 <div class="row">
-                    <div class="col-xs-6 img">
+                    <div class="col-8 img">
                         <x-jet-authentication-card-logo class="block h-9 w-auto" />
                     </div>
-                    <div class="col-xs-6">
-                        <h4 class="ltr"> {{$voucher->number}}#  {{__('Invoice number')}} </h4>
+                    <div class="col-4">
+                        <p>{{__('import voucher number')}} # {{$voucher->number}}</p>
                     </div>
                 </div>
-                <hr/>
+                <hr/><br>
                 <div class="row">
                     <div class="col-xs-12">
-                        <address>
-                            <strong>{{__('Billed To')}} :</strong>
-                            <br>
-                            <strong>{{__('Address')}} :</strong>
-
-                        </address>
-                        <strong>{{__('Paid')}}</strong> : {{$voucher->paid}}<br>
+                        <h5>
+                            <div class="flex flex-row"><strong>{{__('We paid it')}}</strong> : {{__('Tarek Pack company')}}</div>
+                            {{-- <div > --}}
+                                <div class="flex flex-row-reverse display-none">{{__('In history :')}} {{$voucher->created_at->format('d/m/Y')}} </div>
+                            {{-- </div> --}}
+                            <div class="flex flex-row"><strong>{{__('To mr/s')}} </strong>: {{$voucher->to}}</div>
+                            <div class="flex flex-row"><strong>{{__('An amount of ')}}</strong> : {{$voucher->amount}}<br></div>
+                            <div class="flex flex-row"><strong>{{__('Paid for')}}</strong> : {{$voucher->paid_for}}</div>
+                            <div class="flex flex-row-reverse">{{__('The recipient')}}</div>
+                        </h5>
                     </div>
                 </div>
+
+
                 <div class="text-center no-print">
                     <a class="btn btn-outline-dark px-5 rounded-0" onClick="jQuery('#page-content').print()">
                         <i class="fa fa-print"></i> {{__('Print')}}
@@ -43,66 +48,6 @@
             </div>
         </section>
     </div>
-    <div class="invoice-wrapper">
-        <section class="invoice-container">
-            <div class="invoice-inner">
-                <div class="row">
-                    <div class="col-xs-6 img">
-                        <img src="{{asset('images/logo.png')}}" style="width:50%">
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h3 class="ltr" style="font-size: 20px"> {{$voucher->number}} #{{__(' ايصال استلام نقديه رقم')}} </h3>
-
-                    </div>
-                </div>
-
-                <hr/>
-
-                <div class="row">
-                    <div  class="col-xs-12 text-right">
-                        <span style="font-size:30px">  {{__('استلمنا نحن شركه:')}}  </span>
-                        <span style="font-size: 20px">  {{__('Tarek Pack')}}  </span>
-
-                        <span style="float: left;font-size:20px;text-align:right;">{{__('بتاريخ:')}} {{$voucher->created_at->format('d/m/Y')}} </span>
-
-                    </div>
-                </div>
-
-                <div class="purchers">
-                    <div class="item2 text-right">
-                        <h3>
-                            {{__('من السيد:')}}
-                            @if($voucher->customer_id)
-                                {{ $voucher->customer->name }}
-                            @elseif($voucher->supplier_id)
-                             {{ $voucher->supplier->name }}
-                            @endif
-
-                        </h3>
-                        <h3> {{__('مقابل:')}} {{$voucher->paid_for}} </h3>
-
-
-                    </div>
-                    <div  class="item2">
-                        <h3> {{__('مبلغ وقدره:')}} {{ $voucher->amount }}   </h3>
-                        <h2 style="position: absolute;left:40px">
-                            المستلم
-                        </h2>
-                    </div>
-
-                </div>
-
-                <div class="clr"></div>
-
-                <div class="text-center no-print">
-                    <a class="btn btn-primary btn-lg" onClick="jQuery('#page-content').print()">
-                        <i class="fa fa-print"></i> Print
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-    <!--===================================================-->
 
 
 

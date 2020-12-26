@@ -34,18 +34,14 @@
             </form>
         </div>
         <div class="panel-body">
-
-            <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
+            <table  id="table" class="table table-striped table-bordered text-center no-footer dtr-inline" style="width:100%">
                 <thead>
                 <tr>
                     <th ><?php echo e(__('Number')); ?></th>
                     <th ><?php echo e(__('Amount')); ?></th>
                     <th ><?php echo e(__('Paid For')); ?></th>
                     <th><?php echo e(__('Import from')); ?></th>
-                    
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['read voucher'])): ?>
-                        <th scope="col"><?php echo e(__('Actions')); ?></th>
-                    <?php endif; ?>
+                    <th scope="col"><?php echo e(__('Actions')); ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,14 +51,9 @@
                         <td><?php echo e($voucher->amount); ?></td>
                         <td><?php echo e($voucher->to); ?></td>
                         <td><?php echo e($voucher->paid_for); ?></td>
-                        
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['read voucher'])): ?>
-                            <td>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('read voucher')): ?>
-                                    <a href="<?php echo e(route('imports.show', $voucher)); ?>"  class="btn btn-success fa fa-eye"></a>
-                                <?php endif; ?>
-                            </td>
-                        <?php endif; ?>
+                        <td>
+                            <a href="<?php echo e(route('imports.show', $voucher)); ?>"  class="btn btn-success btn-sm fa fa-eye"></a>
+                        </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>

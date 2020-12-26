@@ -28,18 +28,14 @@
             </form>
         </div>
         <div class="panel-body">
-
-            <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
+            <table  id="table" class="table table-striped table-bordered text-center no-footer dtr-inline" style="width:100%">
                 <thead>
                 <tr>
                     <th >{{ __('Number') }}</th>
                     <th >{{ __('Amount') }}</th>
                     <th >{{ __('Paid For') }}</th>
                     <th>{{__('Import from')}}</th>
-                    {{-- <th>{{__('User')}}</th> --}}
-                    @canany(['read voucher'])
-                        <th scope="col">{{ __('Actions') }}</th>
-                    @endcanany
+                    <th scope="col">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,14 +45,9 @@
                         <td>{{ $voucher->amount }}</td>
                         <td>{{ $voucher->to }}</td>
                         <td>{{ $voucher->paid_for }}</td>
-                        {{-- <td>{{ $voucher->user->name }}</td> --}}
-                        @canany(['read voucher'])
-                            <td>
-                                @can('read voucher')
-                                    <a href="{{ route('imports.show', $voucher) }}"  class="btn btn-success fa fa-eye"></a>
-                                @endcan
-                            </td>
-                        @endcanany
+                        <td>
+                            <a href="{{ route('imports.show', $voucher) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

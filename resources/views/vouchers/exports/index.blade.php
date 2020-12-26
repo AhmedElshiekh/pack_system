@@ -26,9 +26,9 @@
                 </div>
                 <button type="submit" class="btn btn-outline-info"  style=" margin-top: 25px;width: 100px;"> {{__('filter')}}</button>
             </form>
-        </div><br>
-        <div class="panel-body text-center">
-            <table  id="table" class="table table-striped table-bordered  no-footer dtr-inline" style="width:100%">
+        </div>
+        <div class="panel-body">
+            <table  id="table" class="table table-striped table-bordered text-center no-footer dtr-inline" style="width:100%">
                 <thead>
                 <tr>
                     <th >{{ __('Number') }}</th>
@@ -48,7 +48,7 @@
                         <td>{{ $voucher->paid_for }}</td>
                         {{-- <td>{{ $voucher->user->name }}</td> --}}
                         <td>
-                            <a href="{{ route('exports.show', $voucher) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
+                            <a href="{{ route('exports.show', $voucher) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
                         </td>
                     </tr>
                 @endforeach
