@@ -4,7 +4,7 @@
     @section('header')
         <div class="">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Create a exports voucher') }}
+                {{ __('Create a imports voucher') }}
             </h2>
         </div>
         <div class="">
@@ -37,8 +37,8 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="amount">{{ __('amount') }}*</label>
-                            <input type="number"  class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }} "
-                                id="amount" name="amount" value="0" min="1" required>
+                            <input type="number" step="0.001" class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }} "
+                                id="amount" name="amount" min="0" required>
                             @if($errors->has('amount'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('amount') }}

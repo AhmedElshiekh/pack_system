@@ -27,14 +27,12 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h5>
-                            <div class="flex flex-row"><strong>{{__('We paid it')}}</strong> : {{__('Tarek Pack company')}}</div>
-                            {{-- <div > --}}
-                                <div class="flex flex-row-reverse display-none">{{__('In history :')}} {{$voucher->created_at->format('d/m/Y')}} </div>
-                            {{-- </div> --}}
-                            <div class="flex flex-row"><strong>{{__('To mr/s')}} </strong>: {{$voucher->to}}</div>
-                            <div class="flex flex-row"><strong>{{__('An amount of ')}}</strong> : {{$voucher->amount}}<br></div>
-                            <div class="flex flex-row"><strong>{{__('Paid for')}}</strong> : {{$voucher->paid_for}}</div>
-                            <div class="flex flex-row-reverse">{{__('The recipient')}}</div>
+                            <div class="flex flex-row"><strong>{{__('We paid it') }}</strong>  {{__('Tarek Pack Company')}}</div>
+                            <div class="flex flex-row-reverse"><span>{{__('In history') }} : {{ $voucher->created_at->format('d/m/Y') }} </span></div><br>
+                            <div class="flex flex-row"><strong>{{__('To mr/s') }} </strong>: {{ $voucher->to }}</div><br>
+                            <div class="flex flex-row"><strong>{{__('An amount of ') }}</strong> : {{ $voucher->amount }}</div><br>
+                            <div class="flex flex-row"><strong>{{__('Paid for')}}</strong> : {{ $voucher->paid_for }}</div>
+                            <div class="flex flex-row-reverse">{{__('The recipient') }}</div>
                         </h5>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ class ImportController extends Controller
         return view('vouchers.imports.create');
     }
 
-    public function store(Request $request)
+    public function store($locale ,Request $request)
     {
         $voucher = new Voucher();
         $voucher->type = 'import';
@@ -53,13 +53,13 @@ class ImportController extends Controller
         $voucher->pay_date = $request->input('pay_date');
         $voucher->save();
 
-        return redirect()->route('imports',app()->getLocale())->with('success', 'Voucher Created Successfully');
+        return redirect()->route('imports',$locale)->with('success', 'Voucher Created Successfully');
     }
 
 
-    public function show(Voucher $voucher)
+    public function show($locale ,Voucher $voucher)
     {
-        return view('vouchers.imports.show',compact('voucher'));
+        return view('vouchers.imports.show',compact('voucher', 'locale'));
     }
 
 
@@ -70,11 +70,10 @@ class ImportController extends Controller
     }
 
 
-    public function destroy($voucher)
+    public function destroy($locale, $voucher)
     {
-        $voucher_del = Voucher::find($voucher);
-        $voucher_del->delete();
-        return redirect()->back()->with('success', 'Voucher deleted successfully');
+        $voucher->delete();
+        return redirect()->route('imports',$locale)->with('success', 'Voucher deleted successfully');
     }
 
 

@@ -40,7 +40,7 @@ class PurchaseController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request)
+    public function store($locale ,Request $request)
     {
         $invoice = new Invoice();
         $invoice->type = 'purchase';
@@ -95,13 +95,13 @@ class PurchaseController extends Controller
 
 
 
-        return redirect()->route('purchase',app()->getLocale())->with('success', 'Invoice Created Successfully');
+        return redirect()->route('purchase',$locale)->with('success', 'Invoice Created Successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Invoice $invoice)
+    public function show($locale,Invoice $invoice)
     {
         $items = Item::where('invoice_id', $invoice->id)->get();
         return view('invoice.purchase.show', compact('invoice','items'));
@@ -119,11 +119,10 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($invoice)
+    public function destroy( $locale,Invoice $invoice)
     {
-        $invoice_del = Invoice::find($invoice);
-        $invoice_del->delete();
-        return redirect()->back()->with('success', 'invoice deleted successfully');
+        $invoice->delete();
+        return redirect()->route('purchase',$locale)->with('success', 'invoice deleted successfully');
     }
 
 }

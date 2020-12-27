@@ -34,7 +34,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($locale, Request $request)
     {
         $request->validate([
             'name' => 'required|string',
@@ -45,7 +45,7 @@ class CustomerController extends Controller
             'note' => 'nullable|string',
         ]);
         Customer::Create($request->all());
-        return redirect()->route('customer')->with('success', __('Customer created successfully'));
+        return redirect()->route('customer',$locale)->with('success', __('Customer created successfully'));
     }
 
     /**
@@ -54,7 +54,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($locale,Customer $customer)
     {
         return view('customers.show', compact('customer'));
     }
@@ -65,9 +65,9 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($locale, Customer $customer)
     {
-        return view('customers.edit', compact('customer'));
+        return view('customers.edit', compact('locale','customer'));
     }
 
     /**
@@ -77,7 +77,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update($locale, Request $request, Customer $customer)
     {
         $request->validate([
             'name' => 'required|string',
@@ -86,7 +86,7 @@ class CustomerController extends Controller
             'note' => 'nullable|string',
         ]);
         $customer->update($request->all());
-        return redirect()->route('customer',app()->getLocale())->with('success', __('Customer updated successfully'));
+        return redirect()->route('customer',$locale)->with('success', __('Customer updated successfully'));
     }
 
     /**

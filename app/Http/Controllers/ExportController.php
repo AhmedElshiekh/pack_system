@@ -25,7 +25,7 @@ class ExportController extends Controller
         return view('vouchers.exports.create');
     }
 
-    public function store(Request $request)
+    public function store($locale ,Request $request)
     {
         $voucher = new Voucher();
         $voucher->type = 'export';
@@ -54,14 +54,14 @@ class ExportController extends Controller
         $voucher->pay_date = $request->input('pay_date');
         $voucher->save();
 
-        return redirect()->route('exports',app()->getLocale())->with('success', 'Voucher Created Successfully');
+        return redirect()->route('exports',$locale)->with('success', 'Voucher Created Successfully');
     }
 
 
 
-    public function show(Voucher $voucher)
+    public function show($locale ,Voucher $voucher)
     {
-        return view('vouchers.exports.show',compact('voucher'));
+        return view('vouchers.exports.show',compact('voucher' ,'locale'));
     }
 
 
@@ -72,11 +72,10 @@ class ExportController extends Controller
     }
 
 
-    public function destroy($voucher)
+    public function destroy($locale, $voucher)
     {
-        $voucher_del = Voucher::find($voucher);
-        $voucher_del->delete();
-        return redirect()->back()->with('success', 'Voucher deleted successfully');
+        $voucher->delete();
+        return redirect()->route('exports',$locale)->with('success', 'Voucher deleted successfully');
     }
 
 

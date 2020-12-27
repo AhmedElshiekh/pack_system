@@ -31,7 +31,7 @@
     "Amount": "المبلغ",
     "amount": "المبلغ",
     "Paid For": "دفع لاجل",
-    "Import from": "وارد من",
+    "Import from": "اسم المورد",
     "Export to": "مصروف إلي",
     "Actions": "إجرائات",
     "From": "من",
@@ -58,17 +58,38 @@
     "New Sales invoice": "إنشاء فاتورة مبيعات",
     "New purchase invoice": "إنشاء فاتورة مشتريات",
     "due date": "تاريخ الإستحقاق",
-    "Item Name": "اسم العنصر",
-    "Item Price": "سعر العنصر",
+    "Item Name": "اسم الصنف",
+    "Item Price": "سعر الصنف",
+    "Item Size": "المقاس",
     "Quantity": "الكميه",
     "Add Item": "إضافة عنصر",
     "Price (the ton)": "السعر (بالطن)",
     "Weight (kg)": "الوزن (بالكيلواجرام)",
+    "Invoice number":"فاتوره رقم",
+    "Invoice information":"معلومات الفاتورة",
+    "Billed To":"فاتورة بيع إلي",
 
 
     "import": "إيرادات",
     "Imports": "إيرادات",
+    "import voucher number": "رقم سند الواردات",
+    "Voucher information": "معلومات السند",
+    "Back": "رجوع",
+    "We received it": "استلمنا نحن",
+    "We paid it": "صرفنا نحن",
+    "From mr/s": "من السيد/ة",
+    "To mr/s": "إلي السيد/ة",
+    "An amount of ": "مبلغ وقدرة",
+    "Paid for": "مدفوع لأجل",
+    "Print": "طباعة",
+    "The recipient": "المستــــــلم",
+    "In history": "بتاريخ",
+    "Tarek Pack Company": "شركة Tarek Pack ",
+
+
+    "Incomes": "إيرادات",
     "export": "مصروفات",
-    "Exports": "مصروفات"
+    "Exports": "مصروفات",
+    "Expenses": "مصروفات"
 
 }

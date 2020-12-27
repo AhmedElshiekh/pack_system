@@ -14,7 +14,7 @@
         <div class="panel-heading"></div>
         <!--Block Styled Form -->
         <!--===================================================-->
-        <form method="post" action="{{route('customer.update',app()->getLocale(),$customer)}}"  enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{route('customer.update',[app()->getLocale(),$customer])}}"  enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
             <div class="panel-body">
                 <div class="row">

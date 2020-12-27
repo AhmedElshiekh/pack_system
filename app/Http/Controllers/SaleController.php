@@ -39,7 +39,7 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($locale, Request $request)
     {
         $invoice = new Invoice();
         $invoice->type = 'sale';
@@ -78,7 +78,7 @@ class SaleController extends Controller
 
         $itemLoop = $request->input('item_count');
         for ($i = 1; $i <= $itemLoop; $i++) {
-
+            
             $item = new Item();
             $item->invoice_id = $invoice->id;
             $item->name = $request->input('item_name_'.$i);
@@ -87,10 +87,9 @@ class SaleController extends Controller
             $item->price = $request->input('item_price_'.$i);
             $item->total = $request->input('item_total_'.$i);
             $item->save();
-
         }
 
-        return redirect()->route('sales',app()->getLocale())->with('success','Invoice Created Successfully');
+        return redirect()->route('sales',$locale)->with('success','Invoice Created Successfully');
     }
 
     /**
@@ -99,10 +98,11 @@ class SaleController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show( $locale, Invoice $invoice)
     {
         $items = Item::where('invoice_id', $invoice->id)->get();
-        return view('invoice.purchase.show', compact('invoice','items'));
+        return view('invoice.sales.show', compact('invoice','items'));
+
     }
 
 
@@ -110,11 +110,16 @@ class SaleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($invoice)
+    // public function destroy($invoice)
+    // {
+    //     $invoice_del = Invoice::find($invoice);
+    //     $invoice_del->delete();
+    //     return redirect()->back()->with('success', 'invoice deleted successfully');
+    // }
+    public function destroy( $locale,Invoice $invoice)
     {
-        $invoice_del = Invoice::find($invoice);
-        $invoice_del->delete();
-        return redirect()->back()->with('success', 'invoice deleted successfully');
+        $invoice->delete();
+        return redirect()->route('sales',$locale)->with('success', 'invoice deleted successfully');
     }
 
 

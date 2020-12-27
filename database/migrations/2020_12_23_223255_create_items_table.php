@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->bigInteger('invoice_id')->unsigned()->nullable();
             $table->float('price')->nullable();
             $table->integer('quantity')->default(0);
-            $table->integer('total')->nullable();
+            $table->float('total')->nullable();
             $table->integer('weight')->default(0)->nullable();
             $table->timestamps();
             $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');

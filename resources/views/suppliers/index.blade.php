@@ -38,8 +38,8 @@
                         <td>{{ $supplier->remaining }}</td>
                         <td>{{ $supplier->note }}</td>
                         <td>
-                            <a href="{{ route('supplier.edit',[ app()->getLocale(), $supplier ]) }}"  class="btn btn-sm btn-primary fa fa-edit"></a>
-                            <a href="{{ route('supplier.show',[ app()->getLocale(), $supplier ]) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
+                            <a href="{{ route('supplier.edit',[app()->getLocale(), $supplier ]) }}"  class="btn btn-sm btn-primary fa fa-edit"></a>
+                            <a href="{{ route('supplier.show',[app()->getLocale(), $supplier ]) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
                         </td>
                     </tr>
                 @endforeach

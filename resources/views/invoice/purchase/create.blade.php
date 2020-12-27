@@ -36,7 +36,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="col-4">
+                    {{-- <div class="col-4">
                         <div class="form-group">
                             <label for="due_date">{{ __('due date') }}*</label>
                             <input type="date" class="form-control {{ $errors->has('due_date') ? 'is-invalid' : '' }} "
@@ -47,7 +47,7 @@
                                 </div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -65,8 +65,8 @@
                             <tbody id='tbody'>
                                 <tr>
                                     {{-- <input class="form-control" type="hidden" name="item_count" value="1"> --}}
-                                    <td><input class="form-control" type="text" name="item_name_1" value="" ></td>
-                                    <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="1" name="item_price_1" value="" >  </td>
+                                    <td><input class="form-control" type="text" name="item_name_1" value="" size="50"></td>
+                                    <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="1" name="item_price_1" value="" >  </td>
                                     <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="1" name="item_weight_1" value="" >  </td>
                                     <td><input class="form-control qty" type="number"  onkeyup="itemTotal(this)" data-id="1" name="item_quantity_1" value="1" required>  </td>
                                     <td><input class="form-control itemTotal" type="number" name="item_total_1" value="" readonly>  </td>
@@ -135,24 +135,6 @@
                 </div>
 
                 <div class="row">
-                    {{-- <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="payment">{{ __('Payment Method') }}*</label>
-                            <select name="payment" id="payment"
-                                    class="form-control custom-select " required>
-                                <option value="">{{ __('Select') }} {{ __('Payment') }}</option>
-                                <option value="Cache">{{__('Cache')}}</option>
-                                <option value="Visa">{{__('Visa')}}</option>
-                                <option value="Check">{{__('Check')}}</option>
-                                <option value="Bank_Transfer">{{__('Bank Transfer')}}</option>
-                            </select>
-                            @if($errors->has('payment'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('payment') }}
-                                </div>
-                            @endif
-                        </div>
-                    </div> --}}
 
                 </div>
                 <div class="row">
@@ -186,9 +168,9 @@
                 $('#addBtn').on('click', function () {
                     $('#tbody').append(
                         `<tr>
-                            <input class="form-control" type="hidden" name="item_count" value="${++rowIdx}">
+                            <input class="form-control" type="hidden" name="item_count" value="${++rowIdx}" size="50">
                             <td><input class="form-control" type="text" name="item_name_${rowIdx}" value="" ></td>
-                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_price_${rowIdx}" value="" >  </td>
+                            <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_price_${rowIdx}" value="" >  </td>
                             <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_weight_${rowIdx}" value="" >  </td>
                             <td><input class="form-control qty" type="number"  onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_quantity_${rowIdx}" value="1" required>  </td>
                             <td><input class="form-control itemTotal" type="number" name="item_total_${rowIdx}" value="" readonly>  </td>

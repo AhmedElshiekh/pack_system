@@ -37,7 +37,7 @@
                         <th >{{ __('Number') }}</th>
                         <th >{{ __('Customer') }}</th>
                         <th >{{ __('Total') }}</th>
-                        <th >{{ __('Discount') }}</th>
+                        {{-- <th >{{ __('Discount') }}</th> --}}
                         <th >{{ __('Paid') }}</th>
                         <th >{{ __('Remaining') }}</th>
                         <th >{{ __('Date') }}</th>
@@ -52,7 +52,7 @@
                             <td>{{ $invoice->number }}</td>
                             <td>{{ $invoice->customer->name }}</td>
                             <td>{{ $invoice->total }}</td>
-                            <td>{{ $invoice->discount }}</td>
+                            {{-- <td>{{ $invoice->discount }}</td> --}}
                             <td>{{ $invoice->paid }}</td>
                             <td>{{ $invoice->remaining}}</td>
                             <td>{{ $invoice->created_at->format('d-m-Y') }}</td>

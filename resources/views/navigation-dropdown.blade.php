@@ -38,25 +38,27 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
                     <x-jet-nav-link href="{{ route('imports',app()->getLocale()) }}" :active="request()->routeIs('imports')">
-                        {{ __('Imports') }}
+                        {{ __('Incomes') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:m-5 sm:flex">
                     <x-jet-nav-link href="{{ route('exports',app()->getLocale()) }}" :active="request()->routeIs('exports')">
-                        {{ __('Exports') }}
+                        {{ __('Expenses') }}
                     </x-jet-nav-link>
                 </div>
             </div>
 
+            @if(request()->routeIs('dashboard','supplier','purchase','customer','sales','imports','exports'))
             <div class="flex flex-row-reverse">
                 @foreach (config('app.available_locales') as $locale)
-                    <x-jet-nav-link href="{{ route(Route::currentRouteName(), $locale) }}">
+                    <x-jet-nav-link href="{{ route(Route::currentRouteName(),[ $locale]) }}">
                         <button class="btn btn-sm btn-outline-secondary" >
                             {{ strtoupper($locale) }}
                         </button>
                     </x-jet-nav-link>
                 @endforeach
             </div>
+            @endif
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">

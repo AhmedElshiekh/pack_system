@@ -109,7 +109,7 @@
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php $component->withAttributes(['href' => ''.e(route('imports',app()->getLocale())).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('imports'))]); ?>
-                        <?php echo e(__('Imports')); ?>
+                        <?php echo e(__('Incomes')); ?>
 
                      <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
@@ -125,7 +125,7 @@
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php $component->withAttributes(['href' => ''.e(route('exports',app()->getLocale())).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('exports'))]); ?>
-                        <?php echo e(__('Exports')); ?>
+                        <?php echo e(__('Expenses')); ?>
 
                      <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
@@ -136,14 +136,15 @@
                 </div>
             </div>
 
+            <?php if(request()->routeIs('dashboard','supplier','purchase','customer','sales','imports','exports')): ?>
             <div class="flex flex-row-reverse">
                 <?php $__currentLoopData = config('app.available_locales'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $locale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                      <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.nav-link','data' => ['href' => ''.e(route(Route::currentRouteName(), $locale)).'']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.nav-link','data' => ['href' => ''.e(route(Route::currentRouteName(),[ $locale])).'']]); ?>
 <?php $component->withName('jet-nav-link'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['href' => ''.e(route(Route::currentRouteName(), $locale)).'']); ?>
+<?php $component->withAttributes(['href' => ''.e(route(Route::currentRouteName(),[ $locale])).'']); ?>
                         <button class="btn btn-sm btn-outline-secondary" >
                             <?php echo e(strtoupper($locale)); ?>
 
@@ -156,6 +157,7 @@
 <?php endif; ?> 
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
+            <?php endif; ?>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
