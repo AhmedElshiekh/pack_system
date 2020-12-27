@@ -76,6 +76,7 @@ Route::group([
             Route::Post('/store', [PurchaseController::class, 'store'])->name('purchase.store');
 
             Route::get('/show/{invoice}', [PurchaseController::class, 'show'])->name('purchase.show');
+            Route::Post('/paid/{invoice}', [PurchaseController::class, 'paid'])->name('purchase.paid');
 
             Route::get('edit/{purchase}', [PurchaseController::class, 'edit'])->name('purchase.edit');
             Route::post('edit/{purchase}', [PurchaseController::class, 'update'])->name('purchase.update');
@@ -94,6 +95,7 @@ Route::group([
             Route::Post('/store', [SaleController::class, 'store'])->name('sales.store');
 
             Route::get('/show/{invoice}', [SaleController::class, 'show'])->name('sales.show');
+            Route::Post('/paid/{invoice}', [SaleController::class, 'paid'])->name('sales.paid');
 
             Route::get('edit/{sales}', [SaleController::class, 'edit'])->name('sales.edit');
             Route::post('edit/{sales}', [SaleController::class, 'update'])->name('sales.update');

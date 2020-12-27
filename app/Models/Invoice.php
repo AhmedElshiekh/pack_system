@@ -24,4 +24,8 @@ class Invoice extends Model
     {
         return $this->belongsToMany(Item::class)->withPivot('quantity','price','weight','total','name')->withTimestamps();
     }
+    public function paid()
+    {
+        return $this->belongsToMany(Paid::class)->withPivot('paid','name')->withTimestamps();
+    }
 }

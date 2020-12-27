@@ -64,7 +64,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="address">{{ __('Note') }}</label>
-                            <textarea  class="form-control {{ $errors->has('note') ? 'is-invalid' : '' }} "
+                            <textarea rows="5" class="form-control {{ $errors->has('note') ? 'is-invalid' : '' }} "
                                     name="note" value="{{ old('note') }}" ></textarea>
                             @if($errors->has('note'))
                                 <div class="invalid-feedback">

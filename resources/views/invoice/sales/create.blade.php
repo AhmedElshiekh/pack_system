@@ -44,14 +44,12 @@
                             <thead>
                                 <th>{{__('Item Name')}}</th>
                                 <th>{{__('Item Price')}}</th>
-                                <th>{{__('Item Size')}}</th>
                                 <th>{{__('Quantity')}}</th>
                                 <th>{{__('Total')}}</th>
                             </thead>
                             <tbody id='tbody'>
                                 <td><input class="form-control" type="text" name="item_name_1" value="" size="50"></td>
                                 <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="1" name="item_price_1" value="" ></td>
-                                <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="1" name="item_weight_1" value="" >  </td>
                                 <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="1" name="item_quantity_1" value="1" required></td>
                                 <td><input class="form-control itemTotal" type="number" name="item_total_1" value="" readonly></td>
                                 <td><button type="button" class="btn btn-link " onclick="removeAttr(this);">{{ __('Delete') }}</button></td>
@@ -64,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <br>
+                <hr>
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
@@ -121,7 +119,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="address">{{ __('Note') }}</label>
-                            <textarea  class="form-control {{ $errors->has('note') ? 'is-invalid' : '' }} "
+                            <textarea rows="5" class="form-control {{ $errors->has('note') ? 'is-invalid' : '' }} "
                                     name="note" value="{{ old('note') }}" >{{ old('note') }}</textarea>
                             @if($errors->has('note'))
                                 <div class="invalid-feedback">
@@ -152,7 +150,6 @@
                             <input class="form-control" type="hidden" name="item_count" value="${++rowIdx}" size="50">
                             <td><input class="form-control" type="text" name="item_name_${rowIdx}" value="" ></td>
                             <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_price_${rowIdx}" value="" >  </td>
-                            <td><input class="form-control" type="number" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_weight_${rowIdx}" value="" >  </td>
                             <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="${rowIdx}" name="item_quantity_${rowIdx}" value="1" required>  </td>
                             <td><input class="form-control itemTotal" type="number" name="item_total_${rowIdx}" value="" readonly>  </td>
                             <td><button type="button" class="btn btn-link " onclick="removeAttr(this);">{{ __('Delete') }}</button></td>
@@ -164,7 +161,7 @@
                     child.each(function () {
                         var id = $(this).attr('id');
                         var idx = $(this).children('.row-index').children('p');
-                        var dig = parseInt(id.substring(1));
+                        var dig = parseFloat(id.substring(1));
                         idx.html(`Row ${dig - 1}`);
                         $(this).attr('id', `R${dig - 1}`);
                     });
@@ -200,7 +197,7 @@
                 discount  =  discount.value;
                 let totalPrice = 0;
                 for(var i=0;i<$('.itemTotal').length;i++){
-                    if(parseInt($('.itemTotal')[i].value))
+                    if(parseFloat($('.itemTotal')[i].value))
                         totalPrice += parseFloat($('.itemTotal')[i].value);
                 }
                 $('#total').attr('value',totalPrice-discount);

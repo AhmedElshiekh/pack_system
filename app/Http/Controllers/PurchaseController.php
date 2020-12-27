@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\Item;
+use App\Models\Paid;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -72,6 +73,12 @@ class PurchaseController extends Controller
         $invoice->save();
 
 
+        $paid = new Paid();
+        $paid->name = "الدفعة الأولي" ;
+        $paid->invoice_id = $invoice->id ;
+        $paid->paid = $request->input('paid');
+        $paid->save();
+
         $supplier = Supplier::find($invoice->supplier_id);
         $supplier->paid += $request->input('paid');
         $supplier->remaining += $request->input('remaining');
@@ -87,11 +94,14 @@ class PurchaseController extends Controller
             $item->name = $request->input('item_name_'.$i);
             $item->quantity = $request->input('item_quantity_'.$i);
             $item->weight = $request->input('item_weight_'.$i);
+            $item->size = $request->input('item_size_'.$i);
+            // dd($item->size);
             $item->price = $request->input('item_price_'.$i);
             $item->total = $request->input('item_total_'.$i);
             $item->save();
 
         }
+
 
 
 
@@ -104,9 +114,27 @@ class PurchaseController extends Controller
     public function show($locale,Invoice $invoice)
     {
         $items = Item::where('invoice_id', $invoice->id)->get();
-        return view('invoice.purchase.show', compact('invoice','items'));
+        $paids = Paid::where('invoice_id', $invoice->id)->get();
+
+        return view('invoice.purchase.show', compact('invoice','items','paids','locale'));
     }
 
+
+    public function paid($locale ,Invoice $invoice ,Request $request )
+    {
+        $paid = new Paid();
+        $paid->invoice_id = $invoice->id ;
+        $paid->paid = $request->input('paid');
+        $paid->name = $request->input('name');
+        $paid->save();
+
+        $invoice->paid += $paid->paid;
+        $invoice->remaining -= $paid->paid;
+        $invoice->save();
+
+        return redirect()->route('purchase.show',[$locale ,$invoice])->with('success','Invoice Created Successfully');
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -126,3 +154,4 @@ class PurchaseController extends Controller
     }
 
 }
+

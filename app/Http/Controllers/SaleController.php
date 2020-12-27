@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\Item;
+use App\Models\Paid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -70,6 +71,12 @@ class SaleController extends Controller
         $invoice->save();
 
 
+        $paid = new Paid();
+        $paid->name = "الدفعة الأولي" ;
+        $paid->invoice_id = $invoice->id ;
+        $paid->paid = $request->input('paid');
+        $paid->save();
+
         $customer = Customer::find($invoice->customer_id);
         $customer->paid += $request->input('paid');
         $customer->remaining += $request->input('remaining');
@@ -78,11 +85,10 @@ class SaleController extends Controller
 
         $itemLoop = $request->input('item_count');
         for ($i = 1; $i <= $itemLoop; $i++) {
-            
+
             $item = new Item();
             $item->invoice_id = $invoice->id;
             $item->name = $request->input('item_name_'.$i);
-            // dd($item->name);
             $item->quantity = $request->input('item_quantity_'.$i);
             $item->price = $request->input('item_price_'.$i);
             $item->total = $request->input('item_total_'.$i);
@@ -101,7 +107,26 @@ class SaleController extends Controller
     public function show( $locale, Invoice $invoice)
     {
         $items = Item::where('invoice_id', $invoice->id)->get();
-        return view('invoice.sales.show', compact('invoice','items'));
+        $paids = Paid::where('invoice_id', $invoice->id)->get();
+
+        return view('invoice.sales.show', compact('invoice','items','paids','locale'));
+
+    }
+
+
+    public function paid($locale ,Invoice $invoice ,Request $request )
+    {
+        $paid = new Paid();
+        $paid->invoice_id = $invoice->id ;
+        $paid->paid = $request->input('paid');
+        $paid->name = $request->input('name');
+        $paid->save();
+        
+        $invoice->paid += $paid->paid;
+        $invoice->remaining -= $paid->paid;
+        $invoice->save();
+
+        return redirect()->route('sales.show',[$locale ,$invoice])->with('success','Invoice Created Successfully');
 
     }
 

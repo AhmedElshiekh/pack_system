@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    @section('title',__('Purchase'))
+    @section('title',__('Purchases'))
     @section('header')
         <div class="">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
