@@ -202,7 +202,7 @@
                 }
                 $('#total').attr('value',totalPrice-discount);
                 $('#remaining').val(totalPrice-discount);
-                $('#paid').val(0);
+                // $('#paid').val(0); 
             }
             function itemTotal(qty) {
             // let Qty = qty.value;
@@ -217,9 +217,9 @@
                         totalPrice += parseFloat($('.itemTotal')[i].value);
                 }
                 $('#total').val(totalPrice);
-                $('#discount').val(0);
+                // $('#discount').val(0);
                 $('#remaining').val(totalPrice);
-                $('#paid').val(0);
+                // $('#paid').val(0);
             }
 
             function getRemaining() {
