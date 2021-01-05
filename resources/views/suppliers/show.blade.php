@@ -81,7 +81,7 @@
                                     <td>{{ $invoice->note }}</td>
                                     <td>
                                         <a href="{{ route('purchase.show',[app()->getLocale(), $invoice]) }}"  class="btn btn-sm btn-success fa fa-eye"></a>
-                                        <a href="" onclick="removeUser('{{ $invoice->id }}', '{{ route('invoice.delete',[app()->getLocale(), $invoic]) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
+                                        <a href="" onclick="removeUser('{{ $invoice->id }}', '{{ route('invoice.delete',[app()->getLocale(), $invoice]) }}', event)"  class="btn btn-sm btn-danger fa fa-trash"></a>
                                     </td>
                                 </tr>
                             @endforeach

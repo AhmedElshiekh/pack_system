@@ -33,8 +33,11 @@
                 <tr>
                     <th >{{ __('Number') }}</th>
                     <th >{{ __('Amount') }}</th>
+                    <th>{{__('العميل')}}</th>
+
                     <th >{{ __('Paid For') }}</th>
-                    <th>{{__('Import from')}}</th>
+                    <th >{{ __('Date') }}</th>
+                    <th >{{ __('Note') }}</th>
                     <th scope="col">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
@@ -43,8 +46,12 @@
                     <tr>
                         <td>{{ $voucher->number }}</td>
                         <td>{{ $voucher->amount }}</td>
-                        <td>{{ $voucher->to }}</td>
+                        <td>{{ $voucher->customer ? $voucher->customer->name :"" }}</td>
+
                         <td>{{ $voucher->paid_for }}</td>
+                        <td>{{ $voucher->created_at->format('d-m-Y') }}</td>
+                        <td>{{ $voucher->note }}</td>
+
                         <td>
                             <a href="{{ route('imports.show',[app()->getLocale(), $voucher]) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
                         </td>

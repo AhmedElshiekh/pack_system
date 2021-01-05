@@ -8,6 +8,8 @@ use App\Models\Paid;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Voucher;
+
 use Illuminate\Notifications\Events\NotificationSent;
 
 class PurchaseController extends Controller
@@ -73,11 +75,40 @@ class PurchaseController extends Controller
         $invoice->save();
 
 
-        $paid = new Paid();
-        $paid->name = "الدفعة الأولي" ;
-        $paid->invoice_id = $invoice->id ;
-        $paid->paid = $request->input('paid');
-        $paid->save();
+        // $paid = new Paid();
+        // $paid->name = "الدفعة الأولي" ;
+        // $paid->invoice_id = $invoice->id ;
+        // $paid->paid = $request->input('paid');
+        // $paid->save();
+        $voucher = new Voucher();
+        $voucher->type = 'export';
+
+        $lastVoucher = Voucher::where('type', $voucher->type)->latest()->first();
+        $type = $voucher->type == 'export' ? 'out' : 'in';
+        if ($lastVoucher) {
+            $lastNumber = $lastVoucher->number;
+            if (Str::contains($lastNumber, $type . '-' . Date('y') . Date('m'))) {
+                $num = Str::after($lastNumber, Date('y') . Date('m'));
+                $new = str_pad($num + 1, 4, '0', STR_PAD_LEFT);
+                $number = $type . '-' . Date('y') . Date('m') . $new;
+            } else {
+                $number = $type . '-' . Date('y') . Date('m') . '0001';
+            }
+        } else {
+            $number = $type . '-' . Date('y') . Date('m') . '0001';
+        }
+
+        $voucher->number =  $number;
+        // $voucher->user = auth()->user()->name;
+        $voucher->amount = $request->input('paid');
+        // $voucher->to = $request->input('to');
+        $voucher->supplier_id = $request->input('supplier_id');
+
+        $voucher->paid_for = $invoice->number.' فاتوره مشتريات رقم ';
+        $voucher->note = $request->input('note');
+        // $voucher->pay_date = $request->input('pay_date');
+        $voucher->save();
+
 
         $supplier = Supplier::find($invoice->supplier_id);
         $supplier->paid += $request->input('paid');

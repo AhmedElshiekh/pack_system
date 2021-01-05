@@ -86,8 +86,8 @@
                                     <td>{{ $invoice->created_at->format('d-m-Y') }}</td>
                                     <td>{{ $invoice->note }}</td>
                                     <td>
-                                        <a href="{{ route('sales.show', $invoice) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
-                                        <a href="" onclick="removeUser('{{ $invoice->number }}', '{{ route('invoice.sales.delete', $invoice) }}', event)"  class="btn btn-danger btn-sm fa fa-trash"></a>
+                                        <a href="{{ route('sales.show',[app()->getLocale(), $invoice]) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
+                                        <a href="" onclick="removeUser('{{ $invoice->number }}', '{{ route('invoice.sales.delete',[app()->getLocale(), $invoice]) }}', event)"  class="btn btn-danger btn-sm fa fa-trash"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -101,96 +101,8 @@
             </div>
         </div>
     </div>
-    {{-- <div class="panel">
-        <div class="panel-heading">
-            <span class="panel-title">{{__('السندات')}}</span>
 
-        </div>
-        <!--Data Table-->
-        <!--===================================================-->
-        <div class="panel-body">
 
-            <table  id="table3" class="table ">
-                <thead>
-                <tr>
-                    <th >{{ __('Number') }}</th>
-                    <th >{{ __('Amount') }}</th>
-                    <th >{{ __('Paid For') }}</th>
-                    <th>{{__('User')}}</th>
-                    <th>{{__('التاريخ')}}</th>
-
-                    @canany(['read voucher'])
-                        <th scope="col">{{ __('Actions') }}</th>
-                    @endcanany
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($customer->vouchers as $voucher)
-                    <tr>
-                        <td>{{ $voucher->number }}</td>
-                        <td>{{ $voucher->amount }}</td>
-                        <td>{{ $voucher->paid_for }}</td>
-                        <td>{{ $voucher->user->name }}</td>
-                        <td>{{ $voucher->created_at->format('Y-m-d') }}</td>
-                        @canany(['read voucher'])
-                            <td>
-                                @can('read voucher')
-                                    <a href="{{ route('voucher.sales.show', $voucher) }}"  class="btn btn-success fa fa-eye"></a>
-                                @endcan
-                            </td>
-                        @endcanany
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-
-        </div>
-        <!--===================================================-->
-        <!--End Data Table-->
-    </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <span class="panel-title">{{__('الهوالك')}}</span>
-            <span class="panel-title pull-left">{{__('اجمالي الوزن').':'. $customer->perishables->sum('weight')}}</span>
-            <span class="panel-title pull-left">{{__('اجمالي العدد').':'. $customer->perishables->sum('number')}}</span>
-            <span class="panel-title pull-left">{{__('اجمالي السعر').':'. $customer->perishables->sum('total')}}</span>
-
-        </div>
-        <!--Data Table-->
-        <!--===================================================-->
-        <div class="panel-body">
-
-            <table  id="table3" class="table ">
-                <thead>
-                <tr>
-                    <th >{{ __('#') }}</th>
-                    <th >{{ __('نوع الهالك') }}</th>
-                    <th >{{ __('العدد/الوزن') }}</th>
-                    <th>{{__('سعر الوحده')}}</th>
-                    <th>{{__('الاجمالي')}}</th>
-                    <th>{{__('التاريخ')}}</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($customer->perishables as $perishable)
-                    <tr>
-                        <td>{{ $perishable->id }}</td>
-                        <td>{{ $perishable->type->name }}</td>
-                        <td>{{$perishable->number? $perishable->number:$perishable->weight }}</td>
-                        <td>{{ $perishable->unit_price }}</td>
-                        <td>{{ $perishable->total }}</td>
-                        <td>{{ $perishable->created_at->format('Y-m-d') }}</td>
-
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-
-        </div>
-        <!--===================================================-->
-        <!--End Data Table-->
-    </div> --}}
 
 
     @section('scripts')

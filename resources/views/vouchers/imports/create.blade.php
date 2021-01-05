@@ -22,17 +22,21 @@
             <div class="panel-body">
                 {{-- <input type="hidden" name="type" value="purchase"> --}}
                 <div class="row">
-                    <div class="col-sm-4" id="for">
-                        <div class="form-group">
-                            <label for="amount">{{ __('Import from') }}*</label>
-                            <input type="text"  class="form-control {{ $errors->has('') ? 'is-invalid' : '' }} "
-                                id="to" name="to" value="{{old('to')}}" >
-                            @if($errors->has('to'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('to') }}
-                                </div>
-                            @endif
-                        </div>
+
+                    <div class="col-4">
+                        <label for="customer_id">{{ __('Customer') }}*</label>
+                        <select name="customer_id" id="customer_id"
+                                class="form-control custom-select auto-save select" required >
+                            <option value="">{{ __('Select') }} {{ __('Customer') }}</option>
+                            @foreach($customers as $key=>$value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('customer_id'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('customer_id') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
@@ -88,52 +92,52 @@
         <script src="{{ asset('front/js/select2.min.js') }}"></script>
 
         <script>
-            $(document).ready(function() {
-                $('.select').select2();
-                $('#items').on('keyup', function() {
-                    var value = $(this).val();
-                    let url =  '{{url('/items/search')}}';
-                    $.ajax({
-                        url: url+'/'+value,
-                        type: "GET",
-                        dataType: "json",
-                        success:function(data) {
-                            $('.searchItems').remove()
-                            let i = 0 ;
-                            $.each(data, function() {
-                                $('.item').append('<li class="searchItems" onclick="addItem(this)" data-id="'+ data[i]['id'] +'" data-name="'+ data[i]['name'] +'" data-price="'+ data[i]['listPrice'] +'"   ><a href="#"><img width="50px" height="40px" src="'+ data[i]['image']+'" style="margin-right: 20px;" > ' + data[i]['name'] + '</a></li>');
-                                // $('.item').append('<li class="searchItems"   data-id="+ data[i][\'id\'] +" ><a class="ee" href="#"><img width="50px" src="'+ data[i]['image']+'" style="margin-right: 20px;" > ' + data[i]['name'] + '</a></li>');
-                                i++;
-                            });
-                        // });
-                        },
-                        error:function() {
-                            $('.searchItems').remove();
-                        }
-                    });
-                });
-                $('#voucher_cat').on('change',function () {
-                    let val = $(this).val();
-                    console.log(val);
-                    if(val == 1){
-                        $('#suppliers').css('display','block');
-                        $('#for').hide();
-                        $('#users').hide();
-                    }else if(val == 2)
-                    {
-                        $('#users').show();
-                        $('#suppliers').hide();
-                        $('#for').hide();
+            // $(document).ready(function() {
+            //     $('.select').select2();
+            //     $('#items').on('keyup', function() {
+            //         var value = $(this).val();
+            //         let url =  '{{url('/items/search')}}';
+            //         $.ajax({
+            //             url: url+'/'+value,
+            //             type: "GET",
+            //             dataType: "json",
+            //             success:function(data) {
+            //                 $('.searchItems').remove()
+            //                 let i = 0 ;
+            //                 $.each(data, function() {
+            //                     $('.item').append('<li class="searchItems" onclick="addItem(this)" data-id="'+ data[i]['id'] +'" data-name="'+ data[i]['name'] +'" data-price="'+ data[i]['listPrice'] +'"   ><a href="#"><img width="50px" height="40px" src="'+ data[i]['image']+'" style="margin-right: 20px;" > ' + data[i]['name'] + '</a></li>');
+            //                     // $('.item').append('<li class="searchItems"   data-id="+ data[i][\'id\'] +" ><a class="ee" href="#"><img width="50px" src="'+ data[i]['image']+'" style="margin-right: 20px;" > ' + data[i]['name'] + '</a></li>');
+            //                     i++;
+            //                 });
+            //             // });
+            //             },
+            //             error:function() {
+            //                 $('.searchItems').remove();
+            //             }
+            //         });
+            //     });
+            //     $('#voucher_cat').on('change',function () {
+            //         let val = $(this).val();
+            //         console.log(val);
+            //         if(val == 1){
+            //             $('#suppliers').css('display','block');
+            //             $('#for').hide();
+            //             $('#users').hide();
+            //         }else if(val == 2)
+            //         {
+            //             $('#users').show();
+            //             $('#suppliers').hide();
+            //             $('#for').hide();
 
-                    }else{
-                        $('#suppliers').hide();
-                        $('#users').hide();
+            //         }else{
+            //             $('#suppliers').hide();
+            //             $('#users').hide();
 
-                        $('#for').show();
+            //             $('#for').show();
 
-                    }
-                });
-            });
+            //         }
+            //     });
+            // });
 
 
         </script>
