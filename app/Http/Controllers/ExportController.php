@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Supplier;
 
 use App\Models\Voucher;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ class ExportController extends Controller
 
     public function create()
     {
-        return view('vouchers.exports.create');
+        $suppliers = Supplier::all()->pluck('name', 'id');
+        return view('vouchers.exports.create',compact('suppliers'));
     }
 
     public function store($locale ,Request $request)
@@ -31,7 +33,7 @@ class ExportController extends Controller
         $voucher->type = 'export';
 
         $lastVoucher = Voucher::where('type', $voucher->type)->latest()->first();
-        $type = $voucher->type == 'export' ? 'C-out' : 'C-in';
+        $type = $voucher->type == 'export' ? 'out' : 'in';
         if ($lastVoucher) {
             $lastNumber = $lastVoucher->number;
             if (Str::contains($lastNumber, $type . '-' . Date('y') . Date('m'))) {
@@ -48,12 +50,18 @@ class ExportController extends Controller
         $voucher->number =  $number;
         // $voucher->user = auth()->user()->name;
         $voucher->amount = $request->input('amount');
-        $voucher->to = $request->input('to');
+        // $voucher->to = $request->input('to');
+        $voucher->supplier_id = $request->input('supplier_id');
+
         $voucher->paid_for = $request->input('paid_for');
         $voucher->note = $request->input('note');
         $voucher->pay_date = $request->input('pay_date');
         $voucher->save();
-
+        if ($voucher->supplier){
+            $voucher->supplier->paid += $voucher->amount;
+            $voucher->supplier->remaining -= $voucher->amount;
+            $voucher->supplier->save();
+        }
         return redirect()->route('exports',$locale)->with('success', 'Voucher Created Successfully');
     }
 

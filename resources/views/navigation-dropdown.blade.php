@@ -171,7 +171,7 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('purchase',app()->getLocale()) }}" :active="request()->routeIs('purchase')">
-                {{ __('Purchase') }}
+                {{ __('Purchases') }}
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
@@ -190,7 +190,7 @@
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-nav-link href="{{ route('exports',app()->getLocale()) }}" :active="request()->routeIs('exports')">
+            <x-jet-responsive-nav-link href="{{ route('exports',app()->getLocale()) }}" :active="request()->routeIs('exports')">
                 {{ __('Exports') }}
             </x-jet-responsive-nav-link>
         </div>
