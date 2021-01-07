@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-12 py-2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -125,14 +125,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="text-center no-print">
                     <a class="btn btn-outline-dark px-5 rounded-0" onClick="jQuery('#page-content').print()">
                         <i class="fa fa-print"></i> {{__('Print')}}
                     </a>
-                    <button type="button" class="btn btn-outline-success rounded-0" data-toggle="modal" data-target="#addImage">
+                    {{-- <button type="button" class="btn btn-outline-success rounded-0" data-toggle="modal" data-target="#addImage">
                         <i class="fa fa-money"></i> {{__('paid')}}
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </section>

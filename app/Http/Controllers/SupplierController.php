@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\SetLocale;
+use App\Models\Item;
 use App\Models\Supplier;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
 
@@ -45,7 +47,10 @@ class SupplierController extends Controller
     {
         // $Supplier =Supplier::find($supplier);
         // dd($locale);
-        return view('suppliers.show',compact('supplier'));
+        $items = Item::all();
+        $vouchers = Voucher::where('supplier_id' , $supplier->id)->get();
+        // dd($vouchers);
+        return view('suppliers.show',compact('supplier','items','vouchers'));
     }
 
 

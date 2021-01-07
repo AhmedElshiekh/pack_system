@@ -174,7 +174,6 @@
                     title: "{{ __('Are you sure') }}?",
                     text: "{{ __('You are deleting this item') }} ",
                     showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
                     confirmButtonText: '{{ __('Yes, I am sure!') }}',
                     cancelButtonText: "{{ __('No, cancel it') }}"
                 }).then(

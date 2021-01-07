@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label for="amount">{{ __('Paid For') }}*</label>
                             <input type="text"  class="form-control {{ $errors->has('for') ? 'is-invalid' : '' }} "
-                                id="for" name="paid_for" value="{{old('paid_for')}}" >
+                                id="for" name="paid_for" value="{{old('paid_for')}}" required>
                             @if($errors->has('paid_for'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('paid_for') }}

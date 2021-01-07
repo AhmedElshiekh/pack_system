@@ -67,6 +67,7 @@
                                 <tr>
                                     <th >{{ __('Number') }}</th>
                                     <th >{{ __('Total') }}</th>
+                                    <th >{{ __('Items name') }}</th>
                                     <th >{{ __('Discount') }}</th>
                                     <th >{{ __('Paid') }}</th>
                                     <th >{{ __('Remaining') }}</th>
@@ -80,6 +81,11 @@
                                 <tr>
                                     <td>{{ $invoice->number }}</td>
                                     <td>{{ $invoice->total }}</td>
+                                    <td>
+                                        @foreach($items->where('invoice_id', $invoice->id) as $item)
+                                            {{$item->name}} ,
+                                        @endforeach
+                                    </td>
                                     <td>{{ $invoice->discount }}</td>
                                     <td>{{ $invoice->paid }}</td>
                                     <td>{{ $invoice->remaining}}</td>
@@ -88,6 +94,49 @@
                                     <td>
                                         <a href="{{ route('sales.show',[app()->getLocale(), $invoice]) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
                                         <a href="" onclick="removeUser('{{ $invoice->number }}', '{{ route('invoice.sales.delete',[app()->getLocale(), $invoice]) }}', event)"  class="btn btn-danger btn-sm fa fa-trash"></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!--===================================================-->
+                <!--End Data Table-->
+            </div>
+        </div>
+    </div>
+    <div class="py-10 px-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{__('paid summary')}}</h3>
+                </div>
+                <!--Data Table-->
+                <!--===================================================-->
+                <div class="bg-white overflow-hidden border-double border-4 border-light-blue-500">
+                    <div class="panel-body">
+                        <table class="table table-condensed text-center">
+                            <thead>
+                                <tr>
+                                    <th >{{ __('Number') }}</th>
+                                    <th >{{ __('Amount') }}</th>
+                                    <th >{{ __('Paid for') }}</th>
+                                    <th >{{ __('Date') }}</th>
+                                    <th scope="col">{{ __('Actions') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($vouchers as $voucher)
+                                <tr>
+                                    <td>{{ $voucher->number }}</td>
+                                    <td>{{ $voucher->amount }}</td>
+                                    <td>{{ $voucher->paid_for }}</td>
+                                    <td>{{ $voucher->created_at->format('d/m/Y') }}</td>
+                                    <td>
+                                        <a href="{{ route('imports.show',[app()->getLocale(), $voucher]) }}"  class="btn btn-outline-success btn-sm fa fa-eye"></a>
+                                        <a href="{{ route('imports.create',app()->getLocale()) }}" class="btn btn-outline-info btn-sm fa fa-money"></a>
                                     </td>
                                 </tr>
                             @endforeach

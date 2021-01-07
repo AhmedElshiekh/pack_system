@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Item;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -56,7 +58,9 @@ class CustomerController extends Controller
      */
     public function show($locale,Customer $customer)
     {
-        return view('customers.show', compact('customer'));
+        $items = Item::all();
+        $vouchers = Voucher::where('customer_id' , $customer->id)->get();
+        return view('customers.show', compact('customer','items','vouchers'));
     }
 
     /**
