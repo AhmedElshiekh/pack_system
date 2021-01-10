@@ -1,8 +1,8 @@
 {
-    "Dashboard" : "لوحة القياده",
-    "Profile" : "الحساب",
+    "Dashboard": "لوحة القياده",
+    "Profile": "الحساب",
 
-    "invoice" : "فاتورة",
+    "invoice": "فاتورة",
     "purchase": "مشتريات",
     "Purchases": "المشتريات",
     "sales": "مبيعات",
@@ -76,12 +76,11 @@
     "Add Item": "إضافة عنصر",
     "Price (the ton)": "السعر (بالطن)",
     "Weight (kg)": "الوزن (بالكيلواجرام)",
-    "Invoice number":"فاتوره رقم",
-    "Invoice information":"معلومات الفاتورة",
-    "Bill of sale to":"فاتورة بيع إلي",
-    "Invoice for purchase from":"فاتورة شراء من",
-    "Items name":"اسم الاصناف",
-
+    "Invoice number": "فاتوره رقم",
+    "Invoice information": "معلومات الفاتورة",
+    "Bill of sale to": "فاتورة بيع إلي",
+    "Invoice for purchase from": "فاتورة شراء من",
+    "Items name": "اسم الاصناف",
 
     "import": "إيرادات",
     "Imports": "إيرادات",
@@ -97,13 +96,13 @@
     "Print": "طباعة",
     "The recipient": "المستــــــلم",
     "In history": "بتاريخ",
-    "Tarek Pack Company": "شركة Tarek Pack ",
+    "Egypt Pack Company": "شركة Egypt Pack ",
 
-
+    "Main info": "المعلومات الرئيسية",
+    "Sale invoices": "فواتير البيع",
     "Incomes": "إيرادات",
     "export": "مصروفات",
     "Exports": "مصروفات",
     "Expenses": "مصروفات",
-    "Create a export voucher":"اضافه سند مصروفات"
-
+    "Create a export voucher": "اضافه سند مصروفات"
 }

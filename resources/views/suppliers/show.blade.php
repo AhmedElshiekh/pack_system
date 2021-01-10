@@ -126,8 +126,7 @@
                                     <td>{{ $voucher->paid_for }}</td>
                                     <td>{{ $voucher->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                        <a href="{{ route('exports.show',[app()->getLocale(), $voucher]) }}"  class="btn btn-success btn-sm fa fa-eye"></a>
-                                        <a href="{{ route('exports.create',app()->getLocale()) }}" class="btn btn-outline-info btn-sm fa fa-money"></i></a>
+                                        <a href="{{ route('exports.show',[app()->getLocale(), $voucher]) }}"  class="btn px-3 btn-success btn-sm fa fa-eye"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -141,7 +140,14 @@
             </div>
         </div>
     </div>
-
+    <div class="py-10 px-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="text-center">
+                <a href="{{ route('exports.create',app()->getLocale()) }}" class="btn px-5 py-2 rounded-0 btn-outline-info f-right btn-sm fa fa-money"> {{__("paid")}} </a>
+            </div>
+        </div>
+    </div>
+    {{-- <a href="{{ route('exports.create',app()->getLocale()) }}" class="btn btn-outline-info btn-sm fa fa-money"></i></a> --}}
 
     @section('scripts')
         <script>

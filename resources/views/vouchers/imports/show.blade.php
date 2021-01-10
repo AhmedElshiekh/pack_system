@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h5>
-                            <div class="flex flex-row"><strong>{{__('We received it') }}</strong>  {{ __('Tarek Pack Company')}}</div>
+                            <div class="flex flex-row"><strong>{{__('We received it') }}</strong>  {{ __('Egypt Pack Company')}}</div>
                             <div class="flex flex-row-reverse"><span>{{__('In history') }} : {{ $voucher->created_at->format('d/m/Y') }} </span></div><br>
                             <div class="flex flex-row"><strong>{{__('From mr/s') }} </strong>: {{ $voucher->to }}</div><br>
                             <div class="flex flex-row"><strong>{{__('An amount of ') }}</strong> : {{ $voucher->amount }}</div><br>

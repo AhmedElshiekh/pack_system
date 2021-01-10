@@ -202,14 +202,14 @@
                 }
                 $('#total').attr('value',totalPrice-discount);
                 $('#remaining').val(totalPrice-discount);
-                // $('#paid').val(0); 
+                // $('#paid').val(0);
             }
             function itemTotal(qty) {
             // let Qty = qty.value;
             let id = $(qty).attr('data-id');
             let price =  $('input[name="item_price_'+id+'"]').val();
             let Qty =  $('input[name="item_quantity_'+id+'"]').val();
-            let itemTotalPrice = price*Qty ;
+            let itemTotalPrice = parseFloat(price*Qty).toFixed(3) ;
             $('input[name="item_total_'+id+'"]').attr('value',itemTotalPrice);
                 let totalPrice = 0;
                 for(var i=0;i<$('.itemTotal').length;i++){

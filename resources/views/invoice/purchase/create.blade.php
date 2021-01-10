@@ -206,7 +206,7 @@
             let price =  $('input[name="item_price_'+id+'"]').val();
             let weight =  $('input[name="item_weight_'+id+'"]').val();
             let Qty =  $('input[name="item_quantity_'+id+'"]').val();
-            let itemTotalPrice = price*((Qty*weight)/1000) ;
+            let itemTotalPrice = parseFloat (price*((Qty*weight)/1000)).toFixed(3) ;
             $('input[name="item_total_'+id+'"]').attr('value',itemTotalPrice);
                 let totalPrice = 0;
                 for(var i=0;i<$('.itemTotal').length;i++){
