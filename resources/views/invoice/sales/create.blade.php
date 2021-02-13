@@ -48,9 +48,10 @@
                                 <th>{{__('Total')}}</th>
                             </thead>
                             <tbody id='tbody'>
-                                <td><input class="form-control" type="text" name="item_name_1" value="" size="50"></td>
-                                <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="1" name="item_price_1" value="" ></td>
-                                <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="1" name="item_quantity_1" value="1" required></td>
+                                <input class="form-control" type="hidden" name="item_count" value="1">
+                                <td><input class="form-control" type="text" name="item_name_1"  size="50"></td>
+                                <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="1" name="item_price_1"  ></td>
+                                <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="1" name="item_quantity_1"  required></td>
                                 <td><input class="form-control itemTotal" type="number" name="item_total_1" value="" readonly></td>
                                 <td><button type="button" class="btn btn-link " onclick="removeAttr(this);">{{ __('Delete') }}</button></td>
                             </tbody>
@@ -147,7 +148,7 @@
                 $('#addBtn').on('click', function () {
                     $('#tbody').append(
                         `<tr>
-                            <input class="form-control" type="hidden" name="item_count" value="${++rowIdx}" size="50">
+                            <input class="form-control" type="hidden" name="item_count" value="${++rowIdx}" >
                             <td><input class="form-control" type="text" name="item_name_${rowIdx}" value="" ></td>
                             <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_price_${rowIdx}" value="" >  </td>
                             <td><input class="form-control qty"  onkeyup="itemTotal(this)" type="number" data-id="${rowIdx}" name="item_quantity_${rowIdx}" value="1" required>  </td>
