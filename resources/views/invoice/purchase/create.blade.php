@@ -46,7 +46,7 @@
                                 <th>{{__('Size')}}</th>
                                 <th>{{__('Price (the ton)')}}</th>
                                 <th>{{__('Weight (kg)')}}</th>
-                                <th>{{__('Quantity')}}</th>
+                                {{-- <th>{{__('Quantity')}}</th> --}}
                                 <th>{{__('Total')}}</th>
                                 {{-- <th>{{__('Warehouse')}}</th> --}}
                             </thead>
@@ -57,7 +57,7 @@
                                     <td><input class="form-control" type="text" name="item_size_1" size="7"></td>
                                     <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="1" name="item_price_1" >  </td>
                                     <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="1" name="item_weight_1" >  </td>
-                                    <td><input class="form-control qty" type="number"  onkeyup="itemTotal(this)" data-id="1" name="item_quantity_1" required>  </td>
+                                    {{-- <td><input class="form-control qty" type="number"  onkeyup="itemTotal(this)" data-id="1" name="item_quantity_1" required>  </td> --}}
                                     <td><input class="form-control itemTotal" type="number" name="item_total_1" value="" readonly>  </td>
                                     <td><button type="button" class="btn btn-link " onclick="removeAttr(this)">{{ __('Delete') }}</button></td>
                                 </tr>
@@ -162,7 +162,6 @@
                             <td><input class="form-control" type="text" name="item_size_${rowIdx}" value="" size="7"></td>
                             <td><input class="form-control" type="number" step="0.001" min="0" onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_price_${rowIdx}" value="" >  </td>
                             <td><input class="form-control" type="number" onkeyup="itemTotal(this)" step="0.001" min="0" data-id="${rowIdx}" name="item_weight_${rowIdx}" value="" >  </td>
-                            <td><input class="form-control qty" type="number"  onkeyup="itemTotal(this)" data-id="${rowIdx}" name="item_quantity_${rowIdx}" value="1" required>  </td>
                             <td><input class="form-control itemTotal" type="number" name="item_total_${rowIdx}" value="" readonly>  </td>
                             <td><button type="button" class="btn btn-link " onclick="removeAttr(this);">{{ __('Delete') }}</button></td>
                         </tr>`
@@ -205,8 +204,8 @@
             let id = $(qty).attr('data-id');
             let price =  $('input[name="item_price_'+id+'"]').val();
             let weight =  $('input[name="item_weight_'+id+'"]').val();
-            let Qty =  $('input[name="item_quantity_'+id+'"]').val();
-            let itemTotalPrice = parseFloat (price*((Qty*weight)/1000)).toFixed(3) ;
+            // let Qty =  $('input[name="item_quantity_'+id+'"]').val();
+            let itemTotalPrice = parseFloat (price*((weight)/1000)).toFixed(3) ;
             $('input[name="item_total_'+id+'"]').attr('value',itemTotalPrice);
                 let totalPrice = 0;
                 for(var i=0;i<$('.itemTotal').length;i++){

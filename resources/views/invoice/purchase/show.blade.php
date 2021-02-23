@@ -64,7 +64,7 @@
                                             <td class="text-center border"><strong>{{__('Item Size')}}</strong></td>
                                             <td class="text-center border"><strong>{{__('Price (the ton)')}}</strong></td>
                                             <td class="text-center border"><strong>{{__('Weight (kg)')}}</strong></td>
-                                            <td class="text-center border"><strong>{{__('Quantity')}}</strong></td>
+                                            {{-- <td class="text-center border"><strong>{{__('Quantity')}}</strong></td> --}}
                                             <td class="text-center border"><strong>{{__('Total')}}</strong></td>
                                         </tr>
                                         </thead>
@@ -76,18 +76,20 @@
                                                     <td class="text-center border">{{$item->size}}</td>
                                                     <td class="text-center border">{{$item->price}}</td>
                                                     <td class="text-center border">{{$item->weight}}</td>
-                                                    <td class="text-center border">{{$item->quantity}}</td>
+                                                    {{-- <td class="text-center border">{{$item->quantity}}</td> --}}
                                                     <td class="text-center border">{{$item->total}}</td>
                                                 </tr>
                                             @endforeach
                                             <tr class="">
                                                 <td class="no-line text-center "><strong>{{__('Total')}}</strong></td>
-                                                <td></td><td></td><td></td><td></td><td></td>
+                                                {{-- <td></td> --}}
+                                                <td></td><td></td><td></td><td></td>
                                                 <td class="no-line text-center">{{$invoice->total}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="no-line text-center "><strong>{{__('Discount')}}</strong></td>
-                                                <td></td><td></td><td></td><td></td><td></td>
+                                                {{-- <td></td> --}}
+                                                <td></td><td></td><td></td><td></td>
                                                 <td class="no-line text-center">{{$invoice->discount}}</td>
                                             </tr>
                                         </tbody>

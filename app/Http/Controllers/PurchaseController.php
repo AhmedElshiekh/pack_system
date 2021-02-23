@@ -122,12 +122,10 @@ class PurchaseController extends Controller
 
             $item = new Item();
             $item->invoice_id = $invoice->id;
-            // dd($item->invoice_id);
             $item->name = $request->input('item_name_'.$i);
-            $item->quantity = $request->input('item_quantity_'.$i);
+            // $item->quantity = $request->input('item_quantity_'.$i);
             $item->weight = $request->input('item_weight_'.$i);
             $item->size = $request->input('item_size_'.$i);
-            // dd($item->size);
             $item->price = $request->input('item_price_'.$i);
             $item->total = $request->input('item_total_'.$i);
             $item->save();
