@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->bigInteger('invoice_id')->unsigned()->nullable();
             $table->float('price')->nullable();
             $table->string('size')->nullable();
-            $table->integer('quantity')->default(0);
+            $table->integer('quantity')->nullable();
             $table->float('total')->nullable();
             $table->integer('weight')->default(0)->nullable();
             $table->timestamps();
